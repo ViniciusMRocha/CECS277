@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -5,7 +8,7 @@ import java.util.Scanner;
  * @author Katherine Varela
  * @version 1.0.0
  * **/
-public class Question {
+public class Question implements Comparable{
 
     private String text;
     private String answer;
@@ -69,24 +72,58 @@ public class Question {
         System.out.println(this.text);
     }
 
+    /**
+     * returns the question and correct answer
+     * @return returns the question and correct answer in a String
+     */
+
+    public String toString() {
+        return "Q: "=this.text+'\nA: '+this.answer;
+    }
+
+    public int compareTo(Object obj) {
+        Question otherQ = (Question) obj; // Typecasting into a Question type
+        return this.text.compareTo(otherQ.text);
+    }
+
+    /**
+     * Displays the question, accepts the user response, and give
+     */
+    public void presentQuestion() {
+        this.display(); // this is the implicit parameter used to denote that a method is acting on the current object
+                        // "this" acts on the current object
+        System.out.println("Your response ");
+        Scanner in = new Scanner(System.in);
+        String response = in.nextLine().trim(); //accepting keyboard input and trimming white space
+        //trailing whitespace.
+        if(this.checkAnswer(response)) {
+            System.out.println("Correct!");
+        }
+        else {
+            System.out.println("Sorry, Incorrect");
+        }
+    }
 
 
-    /*
+    /**
      * main method
      * */
     public static void main(String[] args) {
 
-        Question q = new Question("What is the capital of Canada?","Ottowa");
-        q.display();
-        System.out.print("Your response: ");
+        Question w = new Question("What is the capital of Canada?","Ottowa");
+        Question a = new Question("What time is class over","2:50");
+        Question b = new Question("Between what two integers is number 2.3?","2 and 3");
 
-        Scanner in = new Scanner(System.in);
-        String response = in.nextLine();
-        if(q.checkAnswer(response)) {
-            System.out.println("Correct!");
-        }
-        else {
-            System.out.println("Sorry that is incorrect.");
-        }
+        ArrayList<Question> question = new ArrayList<Question>();
+        question.add(w);
+        question.add(a);
+        question.add(b);
+
+        System.out.println("Before sort: "+question);
+        Collections.sort(question);
+        System.out.println("After sort: "+question);
+
     }
+
+
 }
