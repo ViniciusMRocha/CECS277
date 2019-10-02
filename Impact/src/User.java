@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class User {
     private static int idGenerator = 0;
     private int id;
@@ -15,6 +17,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.bio = bio;
+
     }
 
     public int getId() {

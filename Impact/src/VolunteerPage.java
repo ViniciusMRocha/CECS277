@@ -1,21 +1,21 @@
 
 public class VolunteerPage extends User {
 
-    private String dob;
+    private String date;
     private String time;
     private String address;
     private String contact;
 
-    public VolunteerPage(String name, String email, String username, String password, String bio, String dob, String time, String address, String contact) {
+    public VolunteerPage(String name, String email, String username, String password, String bio, String date, String time, String address, String contact) {
         super(name, email, username, password, bio);
-        this.dob = dob;
+        this.date = date;
         this.time = time;
         this.address = address;
         this.contact = contact;
     }
 
-    public String getDob() {
-        return dob;
+    public String getDate() {
+        return date;
     }
 
     public String getTime() {
@@ -32,9 +32,8 @@ public class VolunteerPage extends User {
 
     @Override
     public String toString() {
-        return  "VolunteerPage{" +
-                super.toString()+
-                "dob=" + dob +
+        return  super.toString()+
+                "date=" + date +
                 ", time=" + time +
                 ", address='" + address + '\'' +
                 ", contact='" + contact + '\'' +

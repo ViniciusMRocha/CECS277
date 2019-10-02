@@ -31,8 +31,7 @@ public class Organization extends User {
 
     @Override
     public String toString() {
-        return "Organization{" +
-                super.toString() +
+        return  super.toString() +
                 "mailing='" + mailing + '\'' +
                 ", phone='" + phone + '\'' +
                 ", tax='" + tax + '\'' +
