@@ -7,7 +7,7 @@ public class VolunteerPage extends User {
     private String contact;
 
     public VolunteerPage(String name, String email, String username, String password, String bio, String date, String time, String address, String contact) {
-        super(name, email, username, password, bio);
+        super(name, email, username, password, bio,"VolunteerPage");
         this.date = date;
         this.time = time;
         this.address = address;
@@ -32,11 +32,30 @@ public class VolunteerPage extends User {
 
     @Override
     public String toString() {
-        return  super.toString()+
-                "date=" + date +
-                ", time=" + time +
+        return super.toString() +
+            "date='" + date + '\'' +
+            ", time='" + time + '\'' +
+            ", address='" + address + '\'' +
+            ", contact='" + contact + '\''
+            ;
+    }
+
+    public void display() {
+        super.display();
+        String date = getDate();
+        String time = getTime();
+        String address = getAddress();
+        String contact = getContact();
+
+        System.out.println(
+                ", date='" + date + '\'' +
+                ", time='" + time + '\'' +
                 ", address='" + address + '\'' +
                 ", contact='" + contact + '\'' +
-                '}';
-    }
+                " "
+        );
+
+
+    };
+
 }

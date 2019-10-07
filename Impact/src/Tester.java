@@ -3,23 +3,6 @@ import java.util.*;
 
 public class Tester {
 
-    public static User createUser() {
-
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter Name: ");
-        String name = scan.nextLine();
-        System.out.println("Enter Email: ");
-        String email = scan.nextLine();
-        System.out.println("Enter Username: ");
-        String username = scan.nextLine();
-        System.out.println("Enter Password: ");
-        String password = scan.nextLine();
-        System.out.println("Enter Bio: ");
-        String bio = scan.nextLine();
-
-        return new User(name,email,username,password,bio);
-    }
-
     public static User createIndividual() {
 
         Scanner scan = new Scanner(System.in);
@@ -96,7 +79,7 @@ public class Tester {
 
         // Variables
         ArrayList<User> allUsers = new ArrayList<User>();
-        ArrayList<String> feed = new ArrayList<String>();
+        ArrayList<Post> feed = new ArrayList<Post>();
 
         // Individuals
         Individual jimmy = new Individual("Jimmy","Jimmy.Sparks@gmail.com", "Jimmy.Sparks", "Welc@me!", "Jimmy Sparks belived in the American way", "2019-01-01", "123-321-1234");
@@ -110,7 +93,16 @@ public class Tester {
         VolunteerPage philantropy = new VolunteerPage("DSP","dsp@gmail.com","dsp-pl","lambda213","CSULB chapter","1988-05-13","12:00","1250 Belflower", "(556)873-8823");
         allUsers.add(philantropy);
 
+        // Post
+        Post testPost = new Post("Username","Test Message","c:/photos");
+        feed.add(testPost);
+
+        int stop = 1;
+
         System.out.println("Welcome to Impact");
+
+
+        do {
 
         MenuNav nav = new MenuNav();
         nav.mainMenu();
@@ -119,18 +111,27 @@ public class Tester {
         System.out.println("Option: ");
         String menuChoice = scan.nextLine();
 
-        if (menuChoice.equalsIgnoreCase("C")) {
+            /**
+             * Create a user
+             */
+            if (menuChoice.equalsIgnoreCase("C")) {
             nav.createMenu();
             String createOption = scan.nextLine();
 
             if (createOption.equalsIgnoreCase("I")) {
-                createIndividual();
+                // add and create a new individual to the list of all users
+                allUsers.add(createIndividual());
             } else if (createOption.equalsIgnoreCase("O")) {
-                createOrganization();
+                // add and create a new organization to the list of all users
+                allUsers.add(createOrganization());
             } else if (createOption.equalsIgnoreCase("V")) {
-                createVolunteerPage();
+                // add and create a new volunteer to the list of all users
+                allUsers.add(createVolunteerPage());
             }
 
+         /**
+         * Act as a user
+         */
         } else if (menuChoice.equalsIgnoreCase("A")) {
             System.out.println(" ");
             System.out.println("Select a user to act as: ");
@@ -144,52 +145,66 @@ public class Tester {
 
             System.out.println(" ");
             System.out.println("You selected: "+selectedId);
-            System.out.println(allUsers.get(selectedId-1));
-            nav.actAsIndividual();
+            User selectedUser = allUsers.get(selectedId-1);
+            System.out.println(selectedUser);
+                System.out.println(selectedUser.getUsername());
 
-            //Do I need a new scanner here?
-            String actOption = scan.nextLine();
-
-            if(actOption.equalsIgnoreCase("P")) {
-                System.out.println("You selected Post Update");
-            } else if (actOption.equalsIgnoreCase("M")) {
-                System.out.println("Make Donation");
-            } else if (actOption.equalsIgnoreCase("R")) {
-                System.out.println("Register for Event");
+            if (allUsers.get(selectedId-1).getUserType() == "Individual") {
+                nav.actAsIndividual();
+            } else if (allUsers.get(selectedId-1).getUserType() == "Organization") {
+                nav.actAsOrganization();
+            } else if (allUsers.get(selectedId-1).getUserType() == "VolunteerPage") {
+                nav.actAsEvent();
             } else {
-                System.out.println("Not a valid message");
+                System.out.println("Not a valid option");
             }
 
-        } else if ( menuChoice.equalsIgnoreCase("D")) {
-            System.out.println("User picker D");
-            System.out.println("Displaying Feed");
-            for (int i = 0; i < feed.size(); i++) {
-                System.out.println(feed.get(i));
+            String option = scan.nextLine();
+            if (option.equalsIgnoreCase("P")){
+                System.out.println("Enter a message: ");
+                String message = scan.nextLine();
+                System.out.println("Enter a file: ");
+                String file = scan.nextLine();
+                Post newPost = new Post (selectedUser.getUsername(),message,file);
+                feed.add(newPost);
+
+            } else if (option.equalsIgnoreCase("M")){
+                System.out.println("M");
+
+            } else if (option.equalsIgnoreCase("R")){
+                System.out.println("R");
+
+            } else if (option.equalsIgnoreCase("E")){
+                System.out.println("E");
+
+            } else {
+                System.out.println("Not a valid option");
+
             }
 
-        } else {
+        /**
+         * Display the feed
+         */
+        } else if (menuChoice.equalsIgnoreCase("D")) {
+        System.out.println("Displaying Feed");
+        for (int i = 0; i < feed.size(); i++) {
+            System.out.println(feed.get(i));
+        }
+
+        /**
+         * Quit Impact
+         */
+        } else if (menuChoice.equalsIgnoreCase("Q")) {
+            System.out.println("Closing Impact");
+            stop = 0;
+        }
+
+        else {
             System.out.println("Not a valid choice, Try again");
         }
 
-
-
-
-//        System.out.println("User");
-//        User newUser = createUser();
-//        allUsers.add(newUser);
-//        System.out.println(newUser.toString());
-//
-//        System.out.println("Individuals");
-//        User newIndividual = createIndividual();
-//        System.out.println(newIndividual.toString());
-//
-//        System.out.println("Organization");
-//        User newOrganization = createOrganization();
-//        System.out.println(newOrganization.toString());
-//
-//        System.out.println("Volunteer");
-//        User newVolunteerPage = createVolunteerPage();
-//        System.out.println(newVolunteerPage.toString());
-
+        }
+        // kills the application
+        while (stop == 1);
     }
 }

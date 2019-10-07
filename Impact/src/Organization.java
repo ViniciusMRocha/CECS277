@@ -2,11 +2,11 @@ public class Organization extends User {
 
     private String mailing;
     private String phone;
-    private  String tax;
+    private String tax;
     private String bankAcct;
 
     public Organization(String name, String email, String username, String password, String bio, String mailing, String phone, String tax, String bankAcct) {
-        super(name, email, username, password, bio);
+        super(name, email, username, password, bio, "Organization");
         this.mailing = mailing;
         this.phone = phone;
         this.tax = tax;
@@ -35,9 +35,25 @@ public class Organization extends User {
                 "mailing='" + mailing + '\'' +
                 ", phone='" + phone + '\'' +
                 ", tax='" + tax + '\'' +
-                ", bankAcct='" + bankAcct + '\'' +
-                '}';
+                ", bankAcct='" + bankAcct + '\''
+                ;
     }
 
+    public void display(){
+        super.display();
+        String mailing = getMailing();
+        String phone = getPhone();
+        String tax = getTax();
+        String bankAcct = getBankAcct();
+
+        System.out.println(
+            ", mailing='" + mailing + '\'' +
+            ", phone='" + phone + '\'' +
+            ", tax='" + tax + '\'' +
+            ", bankAcct='" + bankAcct + '\'' +
+            " "
+        );
+
+    }
 
 }

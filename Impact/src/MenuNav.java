@@ -1,12 +1,17 @@
+import java.util.Scanner;
+
 public class MenuNav {
     public MenuNav() {
     }
     public void mainMenu() {
         System.out.println(" ");
+        System.out.println("Main menu");
+        System.out.println(" ");
         System.out.println("Please select one of the following");
-        System.out.println("C) create new user");
-        System.out.println("A) act as a user");
-        System.out.println("D) display feed");
+        System.out.println("C) Create new user");
+        System.out.println("A) Act as a user");
+        System.out.println("D) Display feed");
+        System.out.println("Q) Quit");
         System.out.println(" ");
 
     }
