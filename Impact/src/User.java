@@ -68,7 +68,6 @@ public abstract class User {
         String password = getPassword();
         String bio = getBio();
         String userType = getUserType();
-
         System.out.println(
             "id=" + id +
             ", name='" + name + '\'' +
@@ -79,8 +78,6 @@ public abstract class User {
             ", userType='" + userType + '\'' +
             " "
         );
-
-
     }
 
     }

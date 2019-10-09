@@ -27,13 +27,19 @@ title __IMPACT's Class Diagram__\n
   
 
   namespace  {
+    class Registration {
+    }
+  }
+  
+
+  namespace  {
     class Tester {
     }
   }
   
 
   namespace  {
-    class User {
+    abstract class User {
     }
   }
   
@@ -46,6 +52,8 @@ title __IMPACT's Class Diagram__\n
 
   Individual -up-|> User
   Organization -up-|> User
+  Registration o-- User : eventName
+  Registration o-- User : username
   VolunteerPage -up-|> User
 
 

@@ -86,7 +86,6 @@ public class Tester {
         ArrayList<User> allUsers = new ArrayList<User>();
         ArrayList<User> allEvents = new ArrayList<>();
         ArrayList<Post> feed = new ArrayList<Post>();
-        ArrayList <Registration> usersAndEvents = new ArrayList<Registration>();
 
         // Individuals
         Individual jimmy = new Individual("Jimmy","Jimmy.Sparks@gmail.com", "Jimmy.Sparks", "Welc@me!", "Jimmy Sparks belived in the American way", "2019-01-01", "123-321-1234");
@@ -99,6 +98,9 @@ public class Tester {
         // VolunteerPage
         VolunteerPage philantropy = new VolunteerPage("DSP","dsp@gmail.com","dsp-pl","lambda213","CSULB chapter","1988-05-13","12:00","1250 Belflower", "(556)873-8823");
         allUsers.add(philantropy);
+        /**
+         * |||||||| make a variable to handle this double entry
+         */
         allEvents.add(philantropy);
 
         // Post
@@ -138,6 +140,10 @@ public class Tester {
             } else if (createOption.equalsIgnoreCase("V")) {
                 // add and create a new volunteer to the list of all users
                 allUsers.add(createVolunteerPage());
+                /**
+                 * add a variable to the event so you do not created it 2 times
+                 *
+                 */
                 allEvents.add(createVolunteerPage());
 
             } else {
@@ -224,13 +230,6 @@ public class Tester {
                 User selectedEvent = allEvents.get(selectedEventId-1);
                 System.out.println("Event Selected: "+selectedEvent.getName());
 
-
-                /**
-                 * ----------- Need work here -----------
-                 */
-                // adds the username and the event to new list
-                Registration r = new Registration(selectedUser,selectedEvent);
-                usersAndEvents.add(r);
                 // create message
                 String msgR = selectedUser.getUsername() + " has registered to " + selectedEvent.getName();
                 // make a new post object
