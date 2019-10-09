@@ -46,7 +46,6 @@ public class VolunteerPage extends User {
         String time = getTime();
         String address = getAddress();
         String contact = getContact();
-
         System.out.println(
                 ", date='" + date + '\'' +
                 ", time='" + time + '\'' +

@@ -1,12 +1,12 @@
 public class Post {
-    private String user;
+    private static int idGenerator = 0;
+    private int id;
     private String message;
-    private String file;
 
-    public Post(String user,String message, String file) {
-        this.user = user;
+    public Post(String message) {
+        idGenerator++;
+        this.id = idGenerator;
         this.message = message;
-        this.file = file;
     }
 
     public String getMessage() {
@@ -17,19 +17,13 @@ public class Post {
         this.message = message;
     }
 
-    public String getFile() {
-        return file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
-    }
-
     @Override
     public String toString() {
-        return  "user='" + user + '\'' +
-                ", message='" + message + '\'' +
-                ", file='" + file + '\''
-                ;
+        return "Post ID "+ id +" { " + message +" }";
     }
 }
+
+
+
+
+

@@ -45,7 +45,6 @@ public class Organization extends User {
         String phone = getPhone();
         String tax = getTax();
         String bankAcct = getBankAcct();
-
         System.out.println(
             ", mailing='" + mailing + '\'' +
             ", phone='" + phone + '\'' +
