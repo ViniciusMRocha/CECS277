@@ -30,6 +30,22 @@ public class VolunteerPage extends User {
         return contact;
     }
 
+    public int getYear () {
+        String strYear = date.substring(0,4);
+        int intYear = Integer.parseInt(strYear);
+        return intYear;
+    }
+    public int getMonth () {
+        String strMonth = date.substring(5,7);
+        int intMonth = Integer.parseInt(strMonth);
+        return intMonth;
+    }
+    public int getDay () {
+        String strDay = date.substring(8,10);
+        int intDay = Integer.parseInt(strDay);
+        return intDay;
+    }
+
     @Override
     public String toString() {
         return super.toString() +

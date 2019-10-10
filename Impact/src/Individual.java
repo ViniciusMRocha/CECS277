@@ -15,9 +15,6 @@ public class Individual extends User{
         this.dob = dob;
         this.bankAcct = bankAcct;
         this.userType = type;
-        /**
-         * set to optional
-         */
     }
 
     public String getDob() {
@@ -28,30 +25,20 @@ public class Individual extends User{
         return bankAcct;
     }
 
-
-    public String actAsIndividual() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println(" ");
-        System.out.println("What do you want to do as the individual");
-        System.out.println("P) Post Update");
-        System.out.println("M) Make Donation");
-        System.out.println("R) Register for Event");
-        System.out.println("E) Exit to main");
-        System.out.println(" ");
-        String option = scan.nextLine();
-
-        if (option.equalsIgnoreCase("P")){
-            return "P";
-        } else if (option.equalsIgnoreCase("M")){
-            return "M";
-        } else if (option.equalsIgnoreCase("R")){
-            return "R";
-        } else if (option.equalsIgnoreCase("E")){
-            return "E";
-        } else {
-            return "Not a valid option";
-        }
-
+    public int getYear () {
+        String strYear = dob.substring(0,4);
+        int intYear = Integer.parseInt(strYear);
+        return intYear;
+    }
+    public int getMonth () {
+        String strMonth = dob.substring(5,7);
+        int intMonth = Integer.parseInt(strMonth);
+        return intMonth;
+    }
+    public int getDay () {
+        String strDay = dob.substring(8,10);
+        int intDay = Integer.parseInt(strDay);
+        return intDay;
     }
 
     public void display(){
