@@ -1,7 +1,7 @@
 public class MenuNav {
     public MenuNav() {
     }
-    public void mainMenu() {
+    public static void mainMenu() {
         System.out.println(" ");
         System.out.println("Main menu");
         System.out.println(" ");
@@ -14,7 +14,7 @@ public class MenuNav {
 
     }
 
-    public void createMenu() {
+    public static void createMenu() {
         System.out.println(" ");
         System.out.println("Creating new user");
         System.out.println("What kind of user do you want to create?");
@@ -25,7 +25,7 @@ public class MenuNav {
 
     }
 
-    public void actAsIndividual() {
+    public static void actAsIndividual() {
         System.out.println(" ");
         System.out.println("What do you want to do as the individual");
         System.out.println("P) Post Update");
@@ -45,7 +45,7 @@ public class MenuNav {
         System.out.println(" ");
     }
 
-    public void actAsOrganization() {
+    public static void actAsOrganization() {
         System.out.println(" ");
         System.out.println("What do you want to do an organization");
         System.out.println("P) Post Update");

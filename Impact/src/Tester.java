@@ -1,15 +1,8 @@
-import javafx.geometry.Pos;
-
 import java.time.LocalDate;
 import java.util.*;
 
 public class Tester {
 
-    /**
-     * QUESTIONS
-     * Should we show same day events?
-     *
-     */
 
     public static void main(String[] args) {
 
@@ -23,53 +16,26 @@ public class Tester {
 
         // get local time in the machine
         LocalDate t = LocalDate.now();
-        Date today = new Date(t.getYear(),t.getMonthValue(),t.getDayOfMonth());
-
+        Date today = new Date(t.getYear(),t.getMonthValue()-1,t.getDayOfMonth());
+        Date eighteen = new Date(t.getYear()-18,t.getMonthValue()-1,t.getDayOfMonth());
 
         // Individuals
-        Individual jimmy = new Individual("Jimmy","Jimmy.Sparks@gmail.com", "Jimmy.Sparks", "Welc@me!", "Believed in the American way", "1980-05-09", "123-321-1234");
-        allUsers.add(jimmy);
-        Individual donna = new Individual("Donna","Donna.Sparks@gmail.com", "Donna.Sparks", "Welc@me!", "The trucks always made you worried", "1985-04-21", "123-321-1234");
-        allUsers.add(donna);
-        Individual gloria = new Individual("Gloria","Gloria.Sparks@gmail.com", "Gloria.Sparks", "Welc@me!", "No one said enough is enough", "2000-06-27", "123-321-1234");
-        allUsers.add(gloria);
-        Individual junior = new Individual("Junior","Junior.Sparks@gmail.com", "Junior.Sparks", "Welc@me!", "The only normal one probably", "2010-08-11", "123-321-1234");
-        allUsers.add(junior);
+        Individual jane = new Individual("Jane Doe","jdoe@csulb.edu", "SerengetiJane", "XxX123", "Biology major @CSULB. Lover of the outdoors and anything creepy crawly.", "1997-08-16");
+            allUsers.add(jane);
+        Individual mateo = new Individual("Mateo Stevens","mathmatt03@gmail.com", "MathMatt", "fortniteislifejk", "Books, pizza, and camping trips please.", "2005-05-03");
+            allUsers.add(mateo);
 
         // Organizations
-        Organization impact = new Organization("Impact","Impact.corp@gmail.com","impact.corp","impact_corp","This company will take us diamond","123 Main","(778)908-7831","192-21-1244","931-129-1284");
-        allUsers.add(impact);
+        Organization wwf = new Organization("World Wide Fund for Nature","wwf@gmail.com","WWF","1234","Working to conserve nature and reduce the most pressing threats to the diversity of life on Earth.","1250 24th Street, N.W. Washington, DC 20037","(202) 293-4800","52-1693387","1234 5678 9012");
+            allUsers.add(wwf);
+        Organization gsUsa = new Organization("Girl Scouts of the USA","gsusa@gmail.com","GirlScoutsUSA","12345","Oﬀering the best leadership development experience for girls in the world.","420 Fifth Avenue at 37th Street – Ground Floor","(800) 478-7248","13-1624016","9999 0000 1111 2222");
+        allUsers.add(gsUsa);
 
         // VolunteerPage
-        VolunteerPage philantropy = new VolunteerPage("DSP","dsp@gmail.com","dsp-pl","lambda213","CSULB chapter","1988-05-13","12:00","1250 Belflower", "(556)873-8823");
-        allUsers.add(philantropy);
-        allEvents.add(philantropy);
+        VolunteerPage sealBeach = new VolunteerPage("Seal Beach Clean-Up","saveSealBeach@gmail.com","SealBeachCleanUp","sSBcup","A group of caring neighbors looking out for our beaches.","2019-10-13","9am - Noon","Seal Beach Municipal Pier, Old Towne, CA 90740", "(562) 555-5555");
+            allUsers.add(sealBeach);
+            allEvents.add(sealBeach);
 
-        // Test Post
-        Post testPost1 = new Post("Post A");
-        feed.add(testPost1);
-        Post testPost2 = new Post("Same year, Same Month, Same Day","2019-10-09");
-        feed.add(testPost2);
-        Post testPost3 = new Post("Post B");
-        feed.add(testPost3);
-        Post testPost4 = new Post("Same year, Same Month, Past Day","2019-10-05");
-        feed.add(testPost4);
-        Post testPost5 = new Post("Post C");
-        feed.add(testPost5);
-        Post testPost6 = new Post("Same year, Past Month, Past Day","2019-09-05");
-        feed.add(testPost6);
-        Post testPost7 = new Post("Post D");
-        feed.add(testPost7);
-        Post testPost8 = new Post("Past year, Past Month, Past Day","2018-09-05");
-        feed.add(testPost8);
-        Post testPost9 = new Post("Post E");
-        feed.add(testPost9);
-        Post testPost10= new Post("Future year, Future Month, Future Day","2020-12-12");
-        feed.add(testPost10);
-        Post testPost11= new Post("Same year, Future Month, Future Day","2019-12-12");
-        feed.add(testPost11);
-        Post testPost12= new Post("Same year, Same Month, Future Day","2019-10-15");
-        feed.add(testPost12);
 
         /**
          *  LOGIC START HERE
@@ -113,9 +79,8 @@ public class Tester {
                 String bio = scan.nextLine();
                 System.out.println("Enter Date of Birth: ");
                 String dob = scan.nextLine();
-                System.out.println("Enter Bank Account: ");
-                String bankAcct = scan.nextLine();
-                Individual i = new Individual(name,email,username,password,bio,dob,bankAcct);
+
+                Individual i = new Individual(name,email,username,password,bio,dob);
 
                 allUsers.add(i);
                 String iUserName = i.getUsername();
@@ -229,10 +194,11 @@ public class Tester {
                 System.out.println("Not a valid option");
             }
 
-            /**
-             * Making a post logic
-             */
             String option = scan.nextLine();
+
+                /**
+                 * Making a POST logic
+                 */
             if (option.equalsIgnoreCase("P")){
                 System.out.println("Enter a message: ");
                 String message = scan.nextLine();
@@ -242,23 +208,147 @@ public class Tester {
                     System.out.println("Enter a file: ");
                     String file = scan.nextLine();
                     // create message with file
-                    String msgP = selectedUser.getUsername() + " posted: " + message + "and a file: " +file;
-                    Post newPost = new Post (msgP);
-                    feed.add(newPost);
+                    if (selectedUser.getUserType() == "VolunteerPage") {
+                        VolunteerPage volunteerPageSelected = (VolunteerPage) selectedUser;
+                        String msgP = volunteerPageSelected.getUsername() + " posted: " + message + " and a file: " +file;
+                        Post newPostDate = new Post (msgP,volunteerPageSelected.getDate());
+                        feed.add(newPostDate);
+
+                    } else {
+                        String msgP = selectedUser.getUsername() + " posted: " + message + "and a file: " +file;
+                        Post newPost = new Post (msgP);
+                        feed.add(newPost);
+                    }
+
                 } else if (fileQuestion.equalsIgnoreCase("N")){
-                    // create message without file
-                    String msgP = selectedUser.getUsername() + " posted: " + message;
-                    Post newPost = new Post (msgP);
-                    feed.add(newPost);
+                    if (selectedUser.getUserType() == "VolunteerPage") {
+                        VolunteerPage volunteerPageSelected = (VolunteerPage) selectedUser;
+                        String msgP = volunteerPageSelected.getUsername() + " posted: " + message;
+                        Post newPostDate = new Post (msgP,volunteerPageSelected.getDate());
+                        feed.add(newPostDate);
+
+                    } else {
+                        String msgP = selectedUser.getUsername() + " posted: " + message;
+                        Post newPost = new Post (msgP);
+                        feed.add(newPost);
+                    }
                 } else {
                     System.out.println("Not a valid option");
                 }
 
-
+            /**
+             * Handle option M
+             */
             } else if (option.equalsIgnoreCase("M")){
-                System.out.println("Making an event");
+                /**
+                 * Make a donation
+                 */
+                if (selectedUser.getUserType()=="Individual"){
+                    // get user DOB
+                    Individual individualSelected = (Individual) selectedUser;
 
-            } else if (option.equalsIgnoreCase("R")){
+                    int Year = individualSelected.getYear();
+                    int Month = individualSelected.getMonth();
+                    int Day = individualSelected.getDay();
+
+                    Date dateToCompare = new Date(Year, Month,Day);
+                    // put the into the comparison object
+                    // compare to today
+                    int result = dateToCompare.compareTo(eighteen);
+
+                    //future
+                    if (result == 1 ) {
+                        System.out.println("Sorry, you are under 18 years old. You cannot make a donation");
+                    }
+                    // same day
+                    else if (result <= 0) {
+                        System.out.println("Making a donation");
+                        if (individualSelected.getBankAcct() == null) {
+                            System.out.println("You do not have a bank account. Please enter one to make a donation");
+                            System.out.println("Bank Account: ");
+                            String bankAcct = scan.nextLine();
+                            individualSelected.setBankAcct(bankAcct);
+                            individualSelected.display();
+                        }
+                        // ask what event they want to donate to
+                        System.out.println("Pick an event");
+
+                        // get a list of all the events
+                        for (int i = 0; i < allEvents.size(); i++) {
+                            int j = i +1 ;
+                            System.out.println("Option: "+j+" Event Name: "+allEvents.get(i).getName());
+                        }
+
+                        // ask the user what event they want to register using the ID
+                        System.out.println(" ");
+                        System.out.println("Select an event to donate to: ");
+
+                        // loop for a int here
+                        int selectedEventId = Integer.parseInt(scan.nextLine().trim());
+
+                        VolunteerPage selectedEvent = (VolunteerPage) allEvents.get(selectedEventId-1);
+                        System.out.println("Event Selected: "+selectedEvent.getName());
+
+                        // ask how much
+                        System.out.println(" ");
+                        System.out.println("How much do you want to donate? ");
+                        String donation = scan.nextLine();
+
+                        // display confirmation message
+                        System.out.println("Donation Recorded");
+
+                        // posting to the feed
+                        Post post = new Post (selectedUser.getUsername() + " has just donated $"+donation+" to "+selectedEvent.getName());
+                        feed.add(post);
+                    }
+
+                }
+                /**
+                /**
+                 * Modify date/time/location
+                 */
+                else if(selectedUser.getUserType()=="VolunteerPage"){
+                    VolunteerPage volunteerPageSelected = (VolunteerPage) selectedUser;
+
+                    //new date
+                    System.out.println("Enter New Date: ");
+                    String newDate = scan.nextLine();
+                    if(newDate.isEmpty()){
+                        System.out.println("No change");
+                    } else {
+                        volunteerPageSelected.setDate(newDate);
+                    }
+
+                    //new time
+                    System.out.println("Enter New Time");
+                    String newTime = scan.nextLine();
+                    if(newTime.isEmpty()){
+                        System.out.println("No change");
+                    } else {
+                        volunteerPageSelected.setTime(newTime);
+                    }
+
+                    //new address
+                    System.out.println("Enter New Address");
+                    String newAddress = scan.nextLine();
+                    if(newAddress.isEmpty()){
+                        System.out.println("No change");
+                    } else {
+                        volunteerPageSelected.setAddress(newAddress);
+                    }
+
+                    Post newPost = new Post(volunteerPageSelected.getUsername()+" has been updated. Here is the new info: "+volunteerPageSelected.getAddress()+" on "+volunteerPageSelected.getDate()+" at "+volunteerPageSelected.getTime(),volunteerPageSelected.getDate());
+                    feed.add(newPost);
+                }
+                else{
+                    System.out.println("Not a valid option");
+                }
+
+            }
+            /**
+             * Register for an event
+             */
+            else if (option.equalsIgnoreCase("R") && selectedUser.getUserType()=="Individual"){
                 System.out.println("Registering for a event");
                 // get a list of all the events
                 for (int i = 0; i < allEvents.size(); i++) {
@@ -272,16 +362,19 @@ public class Tester {
                 // loop for a int here
                 int selectedEventId = Integer.parseInt(scan.nextLine().trim());
 
-                User selectedEvent = allEvents.get(selectedEventId-1);
+                VolunteerPage selectedEvent = (VolunteerPage) allEvents.get(selectedEventId-1);
                 System.out.println("Event Selected: "+selectedEvent.getName());
 
-                // create message
-                String msgR = selectedUser.getUsername() + " has registered to " + selectedEvent.getName();
                 // make a new post object
-                Post newRegistration = new Post (msgR);
+                Post newRegistration = new Post (selectedUser.getUsername() + " has registered to " + selectedEvent.getName());
                 // add the new post object to the feed
                 feed.add(newRegistration);
                 System.out.println("User "+selectedUser.getUsername()+" is registered to "+selectedEvent.getName());
+
+                // post the registration count
+                selectedEvent.addAttendees();
+                Post registrationCount = new Post ("'"+selectedEvent.getName() + "' now has " +selectedEvent.getAttendees()+" registered volunteers. Please join us!");
+                feed.add(registrationCount);
 
             } else if (option.equalsIgnoreCase("E")){
                 System.out.println("Returning to the main menu");
@@ -301,16 +394,19 @@ public class Tester {
                 System.out.println(feed.get(i));
             } else {
                 // get date of the post
-                int pYear = feed.get(i).getYear();
-                int pMonth = feed.get(i).getMonth();
-                int pDay = feed.get(i).getDay();
+                int Year = feed.get(i).getYear();
+                int Month = feed.get(i).getMonth();
+                int Day = feed.get(i).getDay();
                 // set year, month and date to variables
-                Date dateToCompare = new Date(pYear, pMonth,pDay);
+                Date dateToCompare = new Date(Year, Month,Day);
                 // put the into the comparison object
-                int result = dateToCompare.compareTo(today);
-                if (result == 1 ) {
+                int result = today.compareTo(dateToCompare);
+                //future
+                if (result == -1 ) {
                     System.out.println(feed.get(i));
-                } else if (result == 0) {
+                }
+                // same day
+                else if (result == 0) {
                     System.out.println(feed.get(i));
                 }
 
