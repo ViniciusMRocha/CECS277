@@ -26,10 +26,10 @@ title __SRC's Class Diagram__\n
     class MenuNav {
         + MenuNav()
         + actAsEvent()
-        + actAsIndividual()
-        + actAsOrganization()
-        + createMenu()
-        + mainMenu()
+        {static} + actAsIndividual()
+        {static} + actAsOrganization()
+        {static} + createMenu()
+        {static} + mainMenu()
     }
   }
   
@@ -61,7 +61,6 @@ title __SRC's Class Diagram__\n
         + Post()
         + getDate()
         + getDay()
-        + getMessage()
         + getMonth()
         + getYear()
         + toString()
@@ -95,11 +94,6 @@ title __SRC's Class Diagram__\n
         + getPassword()
         + getUserType()
         + getUsername()
-        + setBio()
-        + setEmail()
-        + setName()
-        + setPassword()
-        + setUsername()
         + toString()
     }
   }
@@ -124,8 +118,6 @@ title __SRC's Class Diagram__\n
         + getTime()
         + getYear()
         + setAddress()
-        + setAttendees()
-        + setContact()
         + setDate()
         + setTime()
         + toString()

@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -28,13 +29,16 @@ public class Tester {
         // Organizations
         Organization wwf = new Organization("World Wide Fund for Nature","wwf@gmail.com","WWF","1234","Working to conserve nature and reduce the most pressing threats to the diversity of life on Earth.","1250 24th Street, N.W. Washington, DC 20037","(202) 293-4800","52-1693387","1234 5678 9012");
             allUsers.add(wwf);
-        Organization gsUsa = new Organization("Girl Scouts of the USA","gsusa@gmail.com","GirlScoutsUSA","12345","Oﬀering the best leadership development experience for girls in the world.","420 Fifth Avenue at 37th Street – Ground Floor","(800) 478-7248","13-1624016","9999 0000 1111 2222");
+        Organization gsUsa = new Organization("Girl Scouts of the USA","gsusa@gmail.com","GirlScoutsUSA","12345","offering the best leadership development experience for girls in the world.","420 Fifth Avenue at 37th Street Ground Floor","(800) 478-7248","13-1624016","9999 0000 1111 2222");
         allUsers.add(gsUsa);
 
         // VolunteerPage
         VolunteerPage sealBeach = new VolunteerPage("Seal Beach Clean-Up","saveSealBeach@gmail.com","SealBeachCleanUp","sSBcup","A group of caring neighbors looking out for our beaches.","2019-10-13","9am - Noon","Seal Beach Municipal Pier, Old Towne, CA 90740", "(562) 555-5555");
             allUsers.add(sealBeach);
             allEvents.add(sealBeach);
+//        VolunteerPage party = new VolunteerPage("New Years","NewYears@gmail.com","NewYears","New Years","A group of caring neighbors looking out for our beaches.","2020-12-12","9am - Noon","Seal Beach Municipal Pier, Old Towne, CA 90740", "(562) 555-5555");
+//        allUsers.add(party);
+//        allEvents.add(party);
 
 
         /**
@@ -389,6 +393,12 @@ public class Tester {
          */
         } else if (menuChoice.equalsIgnoreCase("D")) {
         System.out.println("Displaying Feed");
+//        for (int i = 0; i < feed.size(); i++) {
+//            System.out.println(feed.get(i) + "Date: "+feed.get(i).getDate());
+//            if (feed.get(i).getDate()==null){
+//                System.out.println("This post has no date: "+feed.get(i));
+//            }
+//        }
         for (int i = 0; i < feed.size(); i++) {
             if ( feed.get(i).getDate() == null) {
                 System.out.println(feed.get(i));
@@ -402,7 +412,7 @@ public class Tester {
                 // put the into the comparison object
                 int result = today.compareTo(dateToCompare);
                 //future
-                if (result == -1 ) {
+                if (result == 1 ) {
                     System.out.println(feed.get(i));
                 }
                 // same day
