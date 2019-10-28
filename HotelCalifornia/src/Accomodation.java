@@ -1,12 +1,11 @@
 public interface Accomodation {
 
-    void addPatron();
+    void addPatron(Customer customer);
 
-    void removePatron();
+    void removePatron(Customer customer);
 
     // look for the next patron and make it a room
     void notification();
 
-    //make a reservation
-    void makeReservation();
+
 }

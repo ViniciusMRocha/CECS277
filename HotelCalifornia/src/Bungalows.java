@@ -6,40 +6,11 @@ public class Bungalows extends Room{
     public Bungalows(String name, double rate) {
         super(name, rate);
         this.cable = false;
-        setType("Bungalows");
-    }
-
-    /**
-     * Interface Methods
-     */
-    public void addPatron() {
-
-    }
-
-    public void removePatron() {
-
-    }
-
-    public void makeReservation() {
-
-    }
-
-    public void notification() {
-
     }
 
     /**
      * Class methods
      */
-
-    public void addCable(){
-        this.cable = true;
-        addToRate(20);
-    }
-
-    private void addToRate(double i) {
-        i = getRate()+i;
-    }
 
 
     @Override
