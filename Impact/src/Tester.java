@@ -7,12 +7,13 @@ public class Tester {
 
     public static void main(String[] args) {
 
-        /**
+        /*
          * Tester variables and other values
          */
         // Variables
         ArrayList<User> allUsers = new ArrayList<User>();
         ArrayList<User> allEvents = new ArrayList<>();
+        ArrayList<User> allOrgs = new ArrayList<>();
         ArrayList<Post> feed = new ArrayList<Post>();
 
         // get local time in the machine
@@ -29,19 +30,21 @@ public class Tester {
         // Organizations
         Organization wwf = new Organization("World Wide Fund for Nature","wwf@gmail.com","WWF","1234","Working to conserve nature and reduce the most pressing threats to the diversity of life on Earth.","1250 24th Street, N.W. Washington, DC 20037","(202) 293-4800","52-1693387","1234 5678 9012");
             allUsers.add(wwf);
+            allOrgs.add(wwf);
         Organization gsUsa = new Organization("Girl Scouts of the USA","gsusa@gmail.com","GirlScoutsUSA","12345","offering the best leadership development experience for girls in the world.","420 Fifth Avenue at 37th Street Ground Floor","(800) 478-7248","13-1624016","9999 0000 1111 2222");
         allUsers.add(gsUsa);
+            allOrgs.add(gsUsa);
 
         // VolunteerPage
-        VolunteerPage sealBeach = new VolunteerPage("Seal Beach Clean-Up","saveSealBeach@gmail.com","SealBeachCleanUp","sSBcup","A group of caring neighbors looking out for our beaches.","2019-10-13","9am - Noon","Seal Beach Municipal Pier, Old Towne, CA 90740", "(562) 555-5555");
+        VolunteerPage sealBeach = new VolunteerPage("Seal Beach Clean-Up","saveSealBeach@gmail.com","SealBeachCleanUp","sSBcup","A group of caring neighbors looking out for our beaches.","2019-12-12","9am - Noon","Seal Beach Municipal Pier, Old Towne, CA 90740", "(562) 555-5555");
             allUsers.add(sealBeach);
             allEvents.add(sealBeach);
-//        VolunteerPage party = new VolunteerPage("New Years","NewYears@gmail.com","NewYears","New Years","A group of caring neighbors looking out for our beaches.","2020-12-12","9am - Noon","Seal Beach Municipal Pier, Old Towne, CA 90740", "(562) 555-5555");
-//        allUsers.add(party);
-//        allEvents.add(party);
+        VolunteerPage party = new VolunteerPage("New Years","NewYears@gmail.com","NewYears","New Years","A group of caring neighbors looking out for our beaches.","2018-10-13","9am - Noon","Seal Beach Municipal Pier, Old Towne, CA 90740", "(562) 555-5555");
+            allUsers.add(party);
+            allEvents.add(party);
 
 
-        /**
+        /*
          *  LOGIC START HERE
          */
 
@@ -62,7 +65,7 @@ public class Tester {
         System.out.println("Option: ");
         String menuChoice = scan.nextLine();
 
-            /**
+            /*
              * Create a user
              */
             if (menuChoice.equalsIgnoreCase("C")) {
@@ -94,7 +97,7 @@ public class Tester {
 
             } else if (createOption.equalsIgnoreCase("O")) {
                 // add and create a new organization to the list of all users
-                /**
+                /*
                  * Creating individual
                  */
                 System.out.println("Enter Name: ");
@@ -118,6 +121,7 @@ public class Tester {
                 Organization o = new Organization(name,email,username,password,bio,mailing,phone,tax,bankAcct);
 
                 allUsers.add(o);
+                allOrgs.add(o);
                 String oName = o.getName();
                 // Post the new organization name in the feed
                 Post newOrganizationPost = new Post (oName + " is a new organization. Welcome to impact! ");
@@ -126,7 +130,7 @@ public class Tester {
 
             } else if (createOption.equalsIgnoreCase("V")) {
 
-                /**
+                /*
                  * Creating volunteer page
                  */
                 System.out.println("Enter Name: ");
@@ -164,7 +168,7 @@ public class Tester {
                 System.out.println("Not a valid option");
             }
 
-         /**
+         /*
          * The post object could be only a message that is a sting
          */
         } else if (menuChoice.equalsIgnoreCase("A")) {
@@ -185,7 +189,7 @@ public class Tester {
             System.out.println(" ");
             System.out.println("You selected user: "+ selectedUser.getUsername());
 
-            /**
+            /*
              * Sub-menu for each of the type of individual
              */
             if (allUsers.get(selectedId-1).getUserType() == "Individual") {
@@ -200,7 +204,7 @@ public class Tester {
 
             String option = scan.nextLine();
 
-                /**
+                /*
                  * Making a POST logic
                  */
             if (option.equalsIgnoreCase("P")){
@@ -227,7 +231,7 @@ public class Tester {
                 } else if (fileQuestion.equalsIgnoreCase("N")){
                     if (selectedUser.getUserType() == "VolunteerPage") {
                         VolunteerPage volunteerPageSelected = (VolunteerPage) selectedUser;
-                        String msgP = volunteerPageSelected.getUsername() + " posted: " + message;
+                        String msgP = selectedUser.getUsername() + " posted: " + message;
                         Post newPostDate = new Post (msgP,volunteerPageSelected.getDate());
                         feed.add(newPostDate);
 
@@ -240,11 +244,11 @@ public class Tester {
                     System.out.println("Not a valid option");
                 }
 
-            /**
+            /*
              * Handle option M
              */
             } else if (option.equalsIgnoreCase("M")){
-                /**
+                /*
                  * Make a donation
                  */
                 if (selectedUser.getUserType()=="Individual"){
@@ -278,20 +282,20 @@ public class Tester {
                         System.out.println("Pick an event");
 
                         // get a list of all the events
-                        for (int i = 0; i < allEvents.size(); i++) {
+                        for (int i = 0; i < allOrgs.size(); i++) {
                             int j = i +1 ;
-                            System.out.println("Option: "+j+" Event Name: "+allEvents.get(i).getName());
+                            System.out.println("Option: "+j+" Event Name: "+allOrgs.get(i).getName());
                         }
 
                         // ask the user what event they want to register using the ID
                         System.out.println(" ");
-                        System.out.println("Select an event to donate to: ");
+                        System.out.println("Select an organization to donate to: ");
 
                         // loop for a int here
                         int selectedEventId = Integer.parseInt(scan.nextLine().trim());
 
-                        VolunteerPage selectedEvent = (VolunteerPage) allEvents.get(selectedEventId-1);
-                        System.out.println("Event Selected: "+selectedEvent.getName());
+                        Organization selectedOrg = (Organization) allOrgs.get(selectedEventId-1);
+                        System.out.println("Event Selected: "+selectedOrg.getName());
 
                         // ask how much
                         System.out.println(" ");
@@ -302,13 +306,13 @@ public class Tester {
                         System.out.println("Donation Recorded");
 
                         // posting to the feed
-                        Post post = new Post (selectedUser.getUsername() + " has just donated $"+donation+" to "+selectedEvent.getName());
+                        Post post = new Post (selectedUser.getUsername() + " has just donated $"+donation+" to "+selectedOrg.getName());
                         feed.add(post);
                     }
 
                 }
-                /**
-                /**
+                /*
+                /*
                  * Modify date/time/location
                  */
                 else if(selectedUser.getUserType()=="VolunteerPage"){
@@ -349,7 +353,7 @@ public class Tester {
                 }
 
             }
-            /**
+            /*
              * Register for an event
              */
             else if (option.equalsIgnoreCase("R") && selectedUser.getUserType()=="Individual"){
@@ -388,43 +392,28 @@ public class Tester {
 
             }
 
-        /**
+        /*
          * Display the feed
          */
         } else if (menuChoice.equalsIgnoreCase("D")) {
         System.out.println("Displaying Feed");
-//        for (int i = 0; i < feed.size(); i++) {
-//            System.out.println(feed.get(i) + "Date: "+feed.get(i).getDate());
-//            if (feed.get(i).getDate()==null){
-//                System.out.println("This post has no date: "+feed.get(i));
-//            }
-//        }
         for (int i = 0; i < feed.size(); i++) {
-            if ( feed.get(i).getDate() == null) {
+            if (feed.get(i).getDate()==null){
                 System.out.println(feed.get(i));
             } else {
-                // get date of the post
-                int Year = feed.get(i).getYear();
-                int Month = feed.get(i).getMonth();
-                int Day = feed.get(i).getDay();
+                int year = feed.get(i).getYear();
+                int month = feed.get(i).getMonth();
+                int day = feed.get(i).getDay();
                 // set year, month and date to variables
-                Date dateToCompare = new Date(Year, Month,Day);
-                // put the into the comparison object
-                int result = today.compareTo(dateToCompare);
-                //future
-                if (result == 1 ) {
-                    System.out.println(feed.get(i));
-                }
-                // same day
-                else if (result == 0) {
+                Date dateToCompare = new Date(year,month,day);
+                if (dateToCompare.before(today)){
                     System.out.println(feed.get(i));
                 }
 
             }
-
         }
 
-        /**
+        /*
          * Quit Impact
          */
         } else if (menuChoice.equalsIgnoreCase("Q")) {
