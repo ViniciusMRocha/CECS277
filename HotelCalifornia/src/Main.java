@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.text.SimpleDateFormat;
 
@@ -16,6 +17,17 @@ public class Main {
         return newDate;
     }
 
+    public static void displayUpdate (Room r) {
+        r.update();
+    }
+
+    public static LocalDate covertDate (String d) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(d,formatter);
+        return date;
+    }
+
+
     public static void main(String[] args) {
 
         /**
@@ -28,12 +40,15 @@ public class Main {
         ArrayList<Customer> allCustomers = new ArrayList<Customer>();
         ArrayList<Reservation> allReservations = new ArrayList<Reservation>();
         Scanner scan = new Scanner(System.in);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
 
         // Bungalows Test
-        Bungalows bungalows1 = new Bungalows("The Shelly",110);
-        Bungalows bungalows2 = new Bungalows("Dream Cove",160);
-        Bungalows bungalows3 = new Bungalows("Pacific Pleasure",130);
-        Bungalows bungalows4 = new Bungalows("Sunset Paradise",140);
+        Bungalows bungalows1 = new Bungalows("Morning Glory",140);
+        Bungalows bungalows2 = new Bungalows("The Shelly",110);
+        Bungalows bungalows3 = new Bungalows("Dream Cove",160);
+        Bungalows bungalows4 = new Bungalows("Pacific Pleasure",130);
+        Bungalows bungalows5 = new Bungalows("Sunset Paradise",140);
 
         // Cottage Test
         Cottage cottage1 = new Cottage("Perlita de Oro",265);
@@ -45,6 +60,7 @@ public class Main {
         allRoomOptions.add(bungalows2);
         allRoomOptions.add(bungalows3);
         allRoomOptions.add(bungalows4);
+        allRoomOptions.add(bungalows5);
         allRoomOptions.add(cottage1);
         allRoomOptions.add(cottage2);
         allRoomOptions.add(cottage3);
@@ -60,24 +76,31 @@ public class Main {
         allCustomers.add(customer3);
 
         // Reservation
-        Date startDate1 = new Date(2019,10-1,05);
-        Date endDate1 = new Date(2019,10-1,10);
 
-        Date startDate2 = new Date(2019,10-1,12);
-        Date endDate2 = new Date(2019,10-1,15);
 
-        Date startDate3 = new Date(2019,10-1,17);
-        Date endDate3 = new Date(2019,10-1,21);
+        LocalDate startDate1 = covertDate("2019-10-05");
+        LocalDate startDate2 = covertDate("2019-10-12");
+        LocalDate startDate3 = covertDate("2019-10-17");
+        LocalDate endDate1 = covertDate("2019-10-09");
+        LocalDate endDate2 = covertDate("2019-10-15");
+        LocalDate endDate3 = covertDate("2019-10-21");
+
         Reservation reservation1 = new Reservation(bungalows1,customer1,startDate1,endDate1);
         Reservation reservation2 = new Reservation(bungalows2,customer2,startDate2,endDate2);
         Reservation reservation3 = new Reservation(bungalows3,customer3,startDate3,endDate3);
+        Reservation reservation4 = new Reservation(cottage1,customer1,startDate1,endDate1);
+        Reservation reservation5 = new Reservation(cottage3,customer2,startDate2,endDate2);
+        Reservation reservation6 = new Reservation(cottage3,customer3,startDate3,endDate3);
+
         System.out.println(reservation1.toString());
 
         // adding all the reservations
         allReservations.add(reservation1);
         allReservations.add(reservation2);
         allReservations.add(reservation3);
-
+        allReservations.add(reservation4);
+        allReservations.add(reservation5);
+        allReservations.add(reservation6);
 
 
 
@@ -115,6 +138,7 @@ public class Main {
                  * Create new reservation
                  */
                 // - - - - - - - - - - - - - - - - OPTION B - - - - - - - - - - - - - - - -
+                Room selectedRoom = null;
                 if (lodgingScan.equalsIgnoreCase("B")){
                     System.out.println("Select a bungalow below\n");
                     // dispay all the options for Bungalows
@@ -128,8 +152,6 @@ public class Main {
                     System.out.println("\nSelect a room by the ID above: ");
                     int bungalowId = Integer.parseInt(scan.nextLine().trim());
 
-                    Room selectedRoom = null;
-                    // TODO: Add a do while here
                         // create a room accordantly
                         if (bungalowId == 1) { // create a bungalow1
                             selectedRoom = bungalows1;
@@ -143,73 +165,83 @@ public class Main {
                         } else if (bungalowId == 4) { // create a bungalow4
                             selectedRoom = bungalows4;
 
+                        } else if (bungalowId == 5) { // create a bungalow3
+                            selectedRoom = bungalows5;
+
                         } else {
                             System.out.println("Not a valid option");
                         }
+                }
+
+                // - - - - - - - - - - - - - - - - OPTION C - - - - - - - - - - - - - - - -
+                else if (lodgingScan.equalsIgnoreCase("C")) {
+                    System.out.println("You are now reserving a cottage");
+                    for (int i = 0; i < allRoomOptions.size(); i++) {
+                        if (allRoomOptions.get(i) instanceof Cottage) {
+                            System.out.println(allRoomOptions.get(i));
+                        }
+                    }
+
+                    System.out.println("\nSelect a room by the ID above: ");
+                    int cottageId = Integer.parseInt(scan.nextLine().trim());
+
+                    // create a room accordantly
+                    if (cottageId == 1) { // create a cottage1
+                        selectedRoom = cottage1;
+
+                    } else if (cottageId == 2) { // create a cottage2
+                        selectedRoom = cottage1;
+
+                    } else if (cottageId == 3) { // create a cottage3
+                        selectedRoom = cottage1;
+
+                    } else {
+                        System.out.println("Not a valid option");
+                    }
+
+
+                }
+                else {
+                    System.out.println("Not a valid option");
+                }
+
+                // - - - - - - - - - - - - - - - - CHECK IN DATE - - - - - - - - - - - - - - - -
 
                     // STEP: Enter the check in date
 
                     // Check In
-                    System.out.println("\nWhen do you want to check in? (YYY-MM-DD)");
+                    System.out.println("\nWhen do you want to check in? (YYYY-MM-DD)");
                     String inDate = scan.nextLine();
-                    Date bungalowCheckInDate = stringToDate(inDate);
+                    LocalDate checkIn = LocalDate.parse(inDate);
+                    // TODO: check availability
 
                     // Check Out
                     System.out.println("\nHow many nights do you want to stay? ");
-                    int bungalowStayLength = Integer.parseInt(scan.nextLine().trim());
+                    int stayLength = Integer.parseInt(scan.nextLine().trim());
+                    // TODO: check availability
 
-                    Calendar checkOutDay = Calendar.getInstance();
-                    // Enter same day as check in
+                    LocalDate checkOut = checkIn.plusDays(stayLength);
 
-                    checkOutDay.set(bungalowCheckInDate.getYear(),bungalowCheckInDate.getMonth()+1,bungalowCheckInDate.getDay()); // 0 is january
-                    Date checkOut =  checkOutDay.getTime();
+                    System.out.println("\nCheck In: " + checkIn);
+                    System.out.println("Check Out: " + checkOut);
 
-                    SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, YYYY");
+                    Boolean dateValidation = true;
+                    for (int i = 0; i < allReservations.size(); i++) {
 
-                    String checkInDate = sdf.format(bungalowCheckInDate);
-                    String checkOutDate = sdf.format(checkOut);
+                        if (checkIn.isBefore(allReservations.get(i).getStartDate())     &&      (checkOut.isBefore(allReservations.get(i).getStartDate()) || checkOut.isEqual(allReservations.get(i).getStartDate()))
+                        ) {
+                            //System.out.println("Clear");
+                        } else if ((checkIn.isAfter(allReservations.get(i).getEndDate()) || checkIn.isEqual(allReservations.get(i).getEndDate()))     &&      checkOut.isAfter(allReservations.get(i).getEndDate())) {
+                            //System.out.println("Clear");
+                        } else {
+//                            System.out.println(" NOT CLEAR");
+                            dateValidation = false;
+                        }
+                    }
 
-                    System.out.println("checkOutDate Before adding: " + checkOutDate);
-                    checkOutDay.add(Calendar.DATE,120);
-                    System.out.println("checkOutDate After adding: "+checkOutDate);
+                    if ( dateValidation == true) {
 
-
-                    // STEP: Enter the number of nights
-                    // TODO: Not working for when the number of nights goes beyond the month selected
-//                    Date bungalowCheckOutDate = stringToDate(bungalowCheckIn);
-//                    int checkOutDate = bungalowCheckOutDate.getDay();
-//                    checkOutDate = bungalowStayLength + checkOutDate;
-//                    bungalowCheckOutDate.setDate(checkOutDate);
-
-                    /**
-                     * Logic to check room availability
-                     */
-                    // TODO: Consolidate Logic Here
-//                    for (int i = 0; i < allReservations.size() ; i++) {
-//                        if (allReservations.get(i).getId() == bungalowId) {
-//
-//                            if (allReservations.get(i).getStartDate().equals(bungalowCheckInDate)){
-//                                System.out.println("Check in = Start Date"); // 2019-10-12
-//                                System.out.println(allReservations.get(i));
-//                            } else if (allReservations.get(i).getEndDate().equals(bungalowCheckInDate)) {
-//                                System.out.println("Check in = End Date"); // 2019-10-15
-//                                System.out.println(allReservations.get(i));
-//                            } else if (allReservations.get(i).getStartDate().before(bungalowCheckInDate) && allReservations.get(i).getEndDate().after(bungalowCheckInDate)){
-//                                System.out.println("Check in = Between Start End Day"); // 2019-10-14
-//                                System.out.println(allReservations.get(i));
-//                            } else {
-//                                System.out.println(allReservations.get(i));
-//                                System.out.println("Good to go");
-//
-//                            }
-//                        }
-//
-//                    }
-
-                    // TODO: FIX The checkout date here
-                    Reservation r = new Reservation(selectedRoom,bungalowCheckInDate,bungalowCheckInDate);
-//                    Reservation r = new Reservation(selectedRoom,bungalowCheckInDate,bungalowCheckOutDate);
-
+                // Adding a customer
                     System.out.println("\nEnter Customer Information");
                     System.out.println("Name: ");
                     String name = scan.nextLine();
@@ -229,49 +261,115 @@ public class Main {
                     String ccSecurity = scan.nextLine();
 
                     Customer c = new Customer(name,address,phone,email,ccNumber,ccName,ccDate,ccSecurity);
+                    
+                    
+                int loopStopper = 0;
+                int upgradeLen = 0;
 
-                    r.addPatron(c);
 
-                    int AcLoopStopper = 0;
                     do {
-                        System.out.println("\nWould you like to upgrade and add AC for $20/night? (Y/N) ");
-                        String acUpgrade = scan.nextLine();
-                        if (acUpgrade.equalsIgnoreCase("Y")){
-                            AcLoopStopper = 1;
-                            // adding ac
-                            r.addToTotal(20,bungalowStayLength);
-                        } else if (acUpgrade.equalsIgnoreCase("N")) {
-                            AcLoopStopper = 1;
+                        // polymorphic method
+                        System.out.println("This room has the following update");
+                        displayUpdate(selectedRoom);
+                        System.out.println("Do you want to add it? (Y/N) ");
+                        String upgradeDecision = scan.nextLine();
+                        if (upgradeDecision.equalsIgnoreCase("Y")){
+                            loopStopper = 1;
+                            
+                            System.out.println("How long do you want it for? ");
+                            upgradeLen = Integer.parseInt(scan.nextLine().trim());
+
+                        } else if (upgradeDecision.equalsIgnoreCase("N")) {
+                            loopStopper = 1;
                             // do not add ac but continue
                         }
-                    } while (AcLoopStopper == 0);
+                    } while (loopStopper == 0);
 
-                    //calculating total
-                    r.setTotal(selectedRoom.getRate(),bungalowStayLength);
+
 
                     // Making reservation
+                    Reservation r = new Reservation( selectedRoom, c, upgradeLen, stayLength);
                     allReservations.add(r);
 
                     System.out.println(" -----------------------");
                     System.out.println("| Reservation Completed |");
                     System.out.println(" -----------------------");
                     System.out.println("\nYour confirmation number is: "+r.getId());
-                    // TODO: get a way to caculate difernce between dates
+                    System.out.println("\nYour deposit total is: $"+r.getDeposit());
                     System.out.println("\nYour total is: $"+r.getTotal()+"\n");
+                    } else {
+                        System.out.println("\nThe room is not available for the dates that you have picked");
+                        System.out.println("\n would you like to be added to the waiting list for this room? (Y/N)");
+                        String wait = scan.nextLine();
+
+                        int waitStoper = 0;
+                        do {
+                            if (wait.equalsIgnoreCase("Y")) {
+                                waitStoper = 1;
+                                System.out.println("\nEnter Customer Information");
+                                System.out.println("Name: ");
+                                String name = scan.nextLine();
+                                System.out.println("Address: ");
+                                String address = scan.nextLine();
+                                System.out.println("Phone: ");
+                                String phone = scan.nextLine();
+                                System.out.println("Email: ");
+                                String email = scan.nextLine();
+                                System.out.println("Card Number: ");
+                                String ccNumber = scan.nextLine();
+                                System.out.println("Name on the Card: ");
+                                String ccName = scan.nextLine();
+                                System.out.println("Card Exp. Date (YYYY-MM-DD): ");
+                                String ccDate = scan.nextLine();
+                                System.out.println("Security Code: ");
+                                String ccSecurity = scan.nextLine();
+
+                                Customer c = new Customer(name,address,phone,email,ccNumber,ccName,ccDate,ccSecurity);
+
+
+                                int loopStopper = 0;
+                                int upgradeLen = 0;
+
+
+                                do {
+                                    // polymorphic method
+                                    System.out.println("This room has the following update");
+                                    displayUpdate(selectedRoom);
+                                    System.out.println("Do you want to add it? (Y/N) ");
+                                    String upgradeDecision = scan.nextLine();
+                                    if (upgradeDecision.equalsIgnoreCase("Y")){
+                                        loopStopper = 1;
+
+                                        System.out.println("How long do you want it for? ");
+                                        upgradeLen = Integer.parseInt(scan.nextLine().trim());
+
+                                    } else if (upgradeDecision.equalsIgnoreCase("N")) {
+                                        loopStopper = 1;
+                                        // do not add ac but continue
+                                    }
+                                } while (loopStopper == 0);
+
+
+
+                                // Making reservation
+                                Reservation r = new Reservation( selectedRoom, c, upgradeLen, stayLength);
+                                r.addToWaitlist(r);
+                                System.out.println("\nYour reservation has been added to the waiting list");
+                                System.out.println("We will let you know if the room was made available\n");
+
+
+                            } else if (wait.equalsIgnoreCase("N")){
+                                waitStoper = 1;
+                                System.out.println("\nYou will not be added to the waitlist at this moment");
+                            }
+                            else {
+                                System.out.println("\nNot a valid option");
+                            }
+                        } while (waitStoper == 0);
+                    }
                 }
 
-                // - - - - - - - - - - - - - - - - OPTION C - - - - - - - - - - - - - - - -
-                else if (lodgingScan.equalsIgnoreCase("C")){
-                    System.out.println("You are now reserving a cottage");
-                    for (int i = 0; i < allRoomOptions.size(); i++) {
-                        if (allRoomOptions.get(i) instanceof Cottage ) {
-                            System.out.println(allRoomOptions.get(i));
-                        }
-                    }
-                } else {
-                    System.out.println("Not a valid option");
-                }
-            }
+
 
             /**
              * - - - - - - - - - - - - - - - - - - - - - - - - - - - OPTION V - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -289,7 +387,6 @@ public class Main {
                     System.out.println(allReservations.get(vOption-1));
                 } else {
                     System.out.println("\nInvalid option\n");
-
                 }
             }
 

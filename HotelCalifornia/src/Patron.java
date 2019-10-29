@@ -1,5 +1,5 @@
 public interface Patron {
 
-    void update();
+    boolean update();
 
 }

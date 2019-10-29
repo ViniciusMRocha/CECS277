@@ -6,14 +6,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d5eab318-82a8-466d-b131-d6219f58011f" name="Default Changelist" comment="Pushing">
-      <change afterPath="$PROJECT_DIR$/ClassDemo/src/DatesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HotelCalifornia/src/Accomodation.java" beforeDir="false" afterPath="$PROJECT_DIR$/HotelCalifornia/src/Accomodation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HotelCalifornia/src/Bungalows.java" beforeDir="false" afterPath="$PROJECT_DIR$/HotelCalifornia/src/Bungalows.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HotelCalifornia/src/Cottage.java" beforeDir="false" afterPath="$PROJECT_DIR$/HotelCalifornia/src/Cottage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HotelCalifornia/src/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/HotelCalifornia/src/Customer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HotelCalifornia/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/HotelCalifornia/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HotelCalifornia/src/Patron.java" beforeDir="false" afterPath="$PROJECT_DIR$/HotelCalifornia/src/Patron.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HotelCalifornia/src/Reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/HotelCalifornia/src/Reservation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HotelCalifornia/src/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/HotelCalifornia/src/Room.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HotelCalifornia/Accomodation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelCalifornia/Accomodation.class" afterDir="false" />
@@ -21,6 +20,7 @@
       <change beforePath="$PROJECT_DIR$/out/production/HotelCalifornia/Cottage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelCalifornia/Cottage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HotelCalifornia/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelCalifornia/Customer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HotelCalifornia/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelCalifornia/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HotelCalifornia/Patron.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelCalifornia/Patron.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HotelCalifornia/Reservation.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelCalifornia/Reservation.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HotelCalifornia/Room.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HotelCalifornia/Room.class" afterDir="false" />
     </list>
@@ -46,112 +46,90 @@
     <select />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Main.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="300">
-                  <caret line="165" lean-forward="true" selection-start-line="165" selection-end-line="165" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#714#720#0" expanded="true" />
-                    <element signature="e#729#739#0" expanded="true" />
-                    <element signature="e#805#818#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/ClassDemo/src/DatesTest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="300">
-                  <caret line="20" column="8" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="47" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Accomodation.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="165">
-                  <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Room.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="371">
-                  <caret line="40" column="30" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="30" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#1043#1044#0" expanded="true" />
-                    <element signature="e#1068#1069#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Cottage.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="8" column="5" lean-forward="true" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Bungalows.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="8" column="5" lean-forward="true" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Reservation.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="645">
-                  <caret line="50" selection-start-line="50" selection-end-line="50" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                    <element signature="e#763#764#0" expanded="true" />
-                    <element signature="e#803#804#0" expanded="true" />
-                    <element signature="e#797#798#0" expanded="true" />
-                    <element signature="e#837#838#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/ClassDemo/src/DatesTest.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="300">
-                  <caret line="20" column="8" lean-forward="true" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="47" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="342" column="58" selection-end-line="420" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Room.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="375">
+              <caret line="27" lean-forward="true" selection-end-line="40" selection-end-column="1" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Accomodation.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" lean-forward="true" selection-end-line="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Bungalows.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="25" column="58" lean-forward="true" selection-end-line="29" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Patron.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" lean-forward="true" selection-end-line="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Reservation.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="69" column="20" lean-forward="true" selection-end-line="123" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Customer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="38" column="32" lean-forward="true" selection-end-line="65" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Cottage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="31" lean-forward="true" selection-end-line="31" />
+              <folding>
+                <element signature="e#256#257#0" expanded="true" />
+                <element signature="e#322#323#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -179,6 +157,9 @@
       <find>nyd</find>
       <find>checkOutDate</find>
       <find>myNextCalendar</find>
+      <find>bungalowStayLength</find>
+      <find>AcLoopStopper</find>
+      <find>Integer</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -188,6 +169,8 @@
       <replace>checkOutDate</replace>
       <replace>checkOut</replace>
       <replace>checkOutDay</replace>
+      <replace>StayLength</replace>
+      <replace>loopStopper</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -224,32 +207,31 @@
         <option value="$PROJECT_DIR$/Impact/src/Organization.java" />
         <option value="$PROJECT_DIR$/Impact/src/VolunteerPage.java" />
         <option value="$PROJECT_DIR$/Impact/src/Individual.java" />
-        <option value="$PROJECT_DIR$/HotelCalifornia/src/Patron.java" />
         <option value="$PROJECT_DIR$/Impact/src/Post.java" />
         <option value="$PROJECT_DIR$/Impact/src/Tester.java" />
-        <option value="$PROJECT_DIR$/HotelCalifornia/src/Accomodation.java" />
-        <option value="$PROJECT_DIR$/HotelCalifornia/src/Cottage.java" />
-        <option value="$PROJECT_DIR$/HotelCalifornia/src/Bungalows.java" />
-        <option value="$PROJECT_DIR$/HotelCalifornia/src/Room.java" />
-        <option value="$PROJECT_DIR$/HotelCalifornia/src/Customer.java" />
-        <option value="$PROJECT_DIR$/HotelCalifornia/src/Reservation.java" />
         <option value="$PROJECT_DIR$/ClassDemo/src/DatesTest.java" />
+        <option value="$PROJECT_DIR$/HotelCalifornia/src/Accomodation.java" />
+        <option value="$PROJECT_DIR$/HotelCalifornia/src/Bungalows.java" />
+        <option value="$PROJECT_DIR$/HotelCalifornia/src/Patron.java" />
+        <option value="$PROJECT_DIR$/HotelCalifornia/src/Customer.java" />
+        <option value="$PROJECT_DIR$/HotelCalifornia/src/Cottage.java" />
+        <option value="$PROJECT_DIR$/HotelCalifornia/src/Room.java" />
         <option value="$PROJECT_DIR$/HotelCalifornia/src/Main.java" />
+        <option value="$PROJECT_DIR$/HotelCalifornia/src/Reservation.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="23" />
-    <option name="width" value="1440" />
-    <option name="height" value="877" />
+  <component name="ProjectFrameBounds">
+    <option name="width" value="1123" />
+    <option name="height" value="1200" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -268,6 +250,17 @@
               <item name="ClassDemo" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="CECS277" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CECS277" type="462c0819:PsiDirectoryNode" />
+              <item name="HotelCalifornia" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CECS277" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CECS277" type="462c0819:PsiDirectoryNode" />
+              <item name="HotelCalifornia" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -278,7 +271,7 @@
     <property name="DefaultPlantUmlFileTemplate" value="UML Object" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1572246506270" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1572331921922" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="Arquillian JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Arquillian JUnit4" value="" />
     <property name="create.test.in.the.same.root" value="true" />
@@ -406,12 +399,14 @@
       <workItem from="1571865107731" duration="8414000" />
       <workItem from="1572065816612" duration="8957000" />
       <workItem from="1572156919782" duration="1942000" />
-      <workItem from="1572232659598" duration="11372000" />
+      <workItem from="1572232659598" duration="11437000" />
+      <workItem from="1572299222708" duration="9077000" />
+      <workItem from="1572319258154" duration="7967000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158030000" />
+    <option name="totallyTimeSpent" value="175139000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -423,11 +418,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1920" height="1200" extended-state="6" />
+    <frame x="0" y="0" width="1123" height="1200" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="simpleUML" order="0" weight="0.32761088" />
-      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.10223642" />
+      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.1813136" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="3" />
       <window_info id="Image Layers" order="4" />
@@ -437,7 +432,7 @@
       <window_info id="Learn" order="8" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3299363" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.433213" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.34927797" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -445,7 +440,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.3299363" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.19314079" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.19223827" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="bottom" id="Version Control" order="12" weight="0.3299363" />
       <window_info anchor="right" id="PlantUML" order="0" weight="0.36909872" />
@@ -500,6 +495,18 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Pushing" />
     <option name="LAST_COMMIT_MESSAGE" value="Pushing" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/HotelCalifornia/src/Reservation.java</url>
+          <line>68</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/WarGame/src/WarGame/Round.java" />
@@ -660,13 +667,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Patron.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Impact/src/Post.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="885">
@@ -691,63 +691,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Cottage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="5" lean-forward="true" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Bungalows.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="5" lean-forward="true" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Accomodation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Room.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="40" column="30" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1043#1044#0" expanded="true" />
-            <element signature="e#1068#1069#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Reservation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="50" selection-start-line="50" selection-end-line="50" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#763#764#0" expanded="true" />
-            <element signature="e#803#804#0" expanded="true" />
-            <element signature="e#797#798#0" expanded="true" />
-            <element signature="e#837#838#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Customer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="401">
-          <caret line="63" column="34" lean-forward="true" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
-          <folding>
-            <element signature="e#1219#1220#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ClassDemo/src/DatesTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -758,15 +701,75 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home/src.zip!/java/time/format/DateTimeFormatter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="1948" selection-start-line="1948" selection-end-line="1948" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Accomodation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" lean-forward="true" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Bungalows.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="25" column="58" lean-forward="true" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Cottage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="31" lean-forward="true" selection-end-line="31" />
+          <folding>
+            <element signature="e#256#257#0" expanded="true" />
+            <element signature="e#322#323#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Customer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="38" column="32" lean-forward="true" selection-end-line="65" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="165" lean-forward="true" selection-start-line="165" selection-end-line="165" />
+        <state relative-caret-position="288">
+          <caret line="342" column="58" selection-end-line="420" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Patron.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" lean-forward="true" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Reservation.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="69" column="20" lean-forward="true" selection-end-line="123" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#714#720#0" expanded="true" />
-            <element signature="e#729#739#0" expanded="true" />
-            <element signature="e#805#818#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HotelCalifornia/src/Room.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="27" lean-forward="true" selection-end-line="40" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

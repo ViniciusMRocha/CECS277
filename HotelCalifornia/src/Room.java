@@ -2,12 +2,13 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
-public abstract class Room {
+public abstract class Room{
     private static int idGenerator = 0;
     private int id;
     private String name;
     private double rate;
     private Customer customer;
+    private ArrayList<Reservation> waitlist;
 
     public Room(String name, double rate) {
         idGenerator++;
@@ -25,23 +26,16 @@ public abstract class Room {
         return rate;
     }
 
-    public void calRate(double rate, int days) {
-        this.rate = rate*days;
-    }
+    public abstract void update();
 
-
-    public int getId() {
-        return id;
-    }
-
-
+    public abstract int getUpgradeRate ();
 
     @Override
     public String toString() {
-        return "Room          {" +
+        return "     Room          {" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", rate=" + rate +
-                ", ";
+                ", rate=" + rate + "}\n"
+                ;
     }
 }

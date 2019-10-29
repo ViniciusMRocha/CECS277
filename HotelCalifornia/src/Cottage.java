@@ -13,13 +13,19 @@ public class Cottage extends Room {
      * Class methods
      */
 
+    public void update () {
+        System.out.println("Cable TV upgrade is $5/night");
+    }
 
+    public int getUpgradeRate () {
+        return 5;
+    }
 
     @Override
     public String toString() {
 
         return super.toString() +
-                "ac=" + ac +
-                '}';
+                "     Add on        {AC=" + ac + "}"
+                ;
     }
 }

@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -7,35 +9,27 @@ public class Reservation implements Accomodation{
     private Room room;
     private Customer customer;
     private double deposit;
-    private Date startDate;
-    private Date endDate;
-    private ArrayList<Customer> waitlist;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private double total;
+    private ArrayList<Reservation> waitlist;
 
 
-    public Reservation(Room room, Customer customer, Date startDate, Date endDate) {
+    public Reservation(Room room, Customer customer, LocalDate startDate, LocalDate endDate) {
         idGenerator++;
         this.id = idGenerator;
         this.room = room;
         this.customer = customer;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.deposit = makeDeposit();
-        // Pass it from main
-        //        room.setRate(room.getRate(),4);
     }
 
-    public Reservation(Room room, Date startDate, Date endDate) {
+    public Reservation(Room room, Customer customer, int upgradeLen, int stayLen) {
         idGenerator++;
         this.id = idGenerator;
         this.room = room;
-        this.customer = null;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.deposit = makeDeposit();
-        this.total = 0;
-        // Pass it from main
-        //        room.setRate(room.getRate(),4);
+        this.customer = customer;
+        this.deposit = makeDeposit(upgradeLen,stayLen);
     }
 
     /**
@@ -47,62 +41,83 @@ public class Reservation implements Accomodation{
     }
 
     // add the next patron from the waiting list
-    public void removePatron(Customer customer) { this.customer = null; }
+    public void removePatron() {
+        this.customer = null;
+        // run notification
+        // runs a addPatron
+    }
 
     public void notification() {
+//        // ask patron interface if the next customer in the waiting list wants to be added in
+//        // iterate over the the waiting list
+//        for (int i = 0; i < waitlist.size(); i++) {
+//            waitlist.get(i).update();
+//            // if TRUE stops and add that customer to the reservation
+//            // else keep going
+//            // if the end was reached do not attach any customer
+//        }
 
     }
 
-
-    public double getTotal() {
-        return total;
-    }
 
     /**
      * Local methods
      */
 
-
-    public void setTotal (double rate, int days) {
-        this.total = rate*days;
+    public LocalDate covertDate (String d) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(d,formatter);
+        return date;
     }
 
-    public void addToTotal(double increment, int days) {
-        this.total = (room.getRate()+increment)*days;
+
+    public double makeDeposit (int upgradeLen, int stayLen) {
+        double result = 0;
+        double upgradeTotal = room.getUpgradeRate()*upgradeLen;
+        double stayTotal = room.getRate()*stayLen;
+        this.total = upgradeTotal+stayTotal;
+
+        if (room instanceof Cottage) {
+            result = total*0.5;
+        } else if (room instanceof Bungalows) {
+            result = total*0.2;
+        }
+        return result;
     }
 
+    public double getDeposit() {
+        return deposit;
+    }
+
+    public double getTotal() {
+        return total;
+    }
 
     public int getId() {
         return id;
     }
 
-    public double makeDeposit () {
-        double result = 0;
-        if (room instanceof Cottage) {
-            result = room.getRate()*0.5;
-        } else if (room instanceof Bungalows) {
-            result = room.getRate()*0.2;
-        }
-        return result;
-
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public Date getStartDate () { return startDate; }
-
-    public Date getEndDate () {
+    public LocalDate getEndDate() {
         return endDate;
+    }
+
+    public void addToWaitlist (Reservation r) {
+        ArrayList wl = this.waitlist;
+        wl.add(r);
     }
 
     @Override
     public String toString() {
         return "Reservation " + id + "\n" +
-                "     " + room + "\n" +
+                room + "\n" +
                 "     " + customer + "\n" +
                 "     General Info  {" +
                 "deposit=" + deposit +
                 ", startDate='" + startDate + '\'' +
-                ", endDate='" + endDate + '\'' + "}\n" +
-                "     Waitlist      {" + waitlist + "}\n"
-                ;
+                ", endDate='" + endDate + '\'' + "}\n";
     }
 }
