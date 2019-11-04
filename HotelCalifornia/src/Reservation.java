@@ -1,9 +1,7 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
 
-public class Reservation implements Accomodation{
+public class Reservation implements Reserve{
     private static int idGenerator = 0;
     private int id;
     private Room room;
@@ -14,7 +12,7 @@ public class Reservation implements Accomodation{
     private double total;
     private int upgradeLen;
     private int stayLen;
-    private boolean available;
+    private boolean inEffect;
 
 
     public Reservation(Room room, Customer customer, LocalDate startDate, LocalDate endDate) {
@@ -24,7 +22,7 @@ public class Reservation implements Accomodation{
         this.customer = customer;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.available = true;
+        this.inEffect = true;
     }
 
     public Reservation(Room room, Customer customer, LocalDate startDate, LocalDate endDate, int upgradeLen, int stayLen) {
@@ -37,34 +35,15 @@ public class Reservation implements Accomodation{
         this.upgradeLen = upgradeLen;
         this.stayLen = stayLen;
         this.deposit = makeDeposit(upgradeLen,stayLen);
-        this.available = true;
+        this.inEffect = true;
     }
 
     /**
      * Interface Methods
      */
 
-    public void addPatron(Customer customer) {
-        this.customer = customer;
-    }
-
-    // add the next patron from the waiting list
-    public void removePatron() {
-        this.customer = null;
-        // run notification
-        // runs a addPatron
-    }
-
-    public void notification() {
-//        // ask patron interface if the next customer in the waiting list wants to be added in
-//        // iterate over the the waiting list
-//        for (int i = 0; i < waitlist.size(); i++) {
-//            waitlist.get(i).update();
-//            // if TRUE stops and add that customer to the reservation
-//            // else keep going
-//            // if the end was reached do not attach any customer
-//        }
-
+    public boolean update() {
+        return true;
     }
 
 
@@ -125,8 +104,8 @@ public class Reservation implements Accomodation{
         return stayLen;
     }
 
-    public boolean isAvailable() {
-        return available;
+    public boolean isInEffect() {
+        return inEffect;
     }
 
     // setters
@@ -141,8 +120,16 @@ public class Reservation implements Accomodation{
         this.deposit = makeDeposit(this.upgradeLen,stayLen);
     }
 
-    public void setAvailable(boolean available) {
-        this.available = available;
+    public void notInEffect() {
+        this.inEffect = false;
+    }
+
+    public void inEffect() {
+        this.inEffect = true;
+    }
+
+    public boolean getInEffect() {
+        return inEffect;
     }
 
     public void setEndDate(LocalDate endDate) {
@@ -155,7 +142,8 @@ public class Reservation implements Accomodation{
                 room + "\n" +
                 "     " + customer + "\n" +
                 "     General Info  {" +
-                "deposit=" + deposit +
+                "in effect=" + inEffect +
+                ", deposit=" + deposit +
                 ", startDate='" + startDate + '\'' +
                 ", endDate='" + endDate + '\'' +
                 ", stayLength='" + stayLen + '\'' +
@@ -163,3 +151,4 @@ public class Reservation implements Accomodation{
                 "}\n";
     }
 }
+

@@ -13,6 +13,10 @@ public class Cottage extends Room {
      * Class methods
      */
 
+    public void notification(){
+
+    }
+
     public void update () {
         System.out.println("Cable TV upgrade is $5/night");
     }

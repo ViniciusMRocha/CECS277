@@ -1,11 +1,12 @@
+import java.util.ArrayList;
+
 public interface Accomodation {
 
-    void addPatron(Customer customer);
+    void addReserve(Reservation reservation);
 
-    void removePatron();
+    void removeReserve(Reservation reservation);
 
     // look for the next patron and make it a room
     void notification();
-
 
 }

@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -368,8 +369,9 @@ public class Main {
 
                                 // Making reservation
                                 Reservation r = new Reservation( selectedRoom, c, checkIn ,checkOut, upgradeLen, stayLength);
-                                selectedRoom.addToWaitlist(r);
-
+                                r.notInEffect();
+                                // Observer pattern
+                                selectedRoom.addReserve(r);
                                 System.out.println("Print waitlist");
                                 selectedRoom.getWaitlist();
                                 System.out.println("\nYour reservation has been added to the waiting list");
@@ -454,7 +456,9 @@ public class Main {
 
                 String eSubMenu = scan.nextLine();
 
-                    if (eSubMenu.equalsIgnoreCase( "N")){
+
+                // - - - - - - - - - - - - - - - - OPTION N - - - - - - - - - - - - - - - -
+                if (eSubMenu.equalsIgnoreCase( "N")){
                         System.out.println("How many nights do you want? ");
                         int updateNights = Integer.parseInt(scan.nextLine().trim());
 
@@ -472,6 +476,7 @@ public class Main {
                             System.out.println("Edits are not able to be recorded. The new dates are not available");
                         }
                     }
+                    // - - - - - - - - - - - - - - - - OPTION U - - - - - - - - - - - - - - - -
                     else if (eSubMenu.equalsIgnoreCase("U")) {
                         if (editReservation.getRoom() instanceof Bungalows) {
                             System.out.println("How many nights do you want to add AC? ");
@@ -488,9 +493,16 @@ public class Main {
                             System.out.println("You cannot days add more then your stay");
                         }
                     }
+                    // - - - - - - - - - - - - - - - - OPTION C - - - - - - - - - - - - - - - -
                     else if (eSubMenu.equalsIgnoreCase("C")) {
-                        editReservation.setAvailable(false);
-                        System.out.println("\nReservation was canceled\n");
+                        // make the reservation not in effect
+                        editReservation.notInEffect();
+
+                        // Observer Patter
+                        editReservation.getRoom().notification(editReservation);
+
+                        System.out.println("Here is the current waitlist");
+                        editReservation.getRoom().getWaitlist();
                     }
                     else if (eSubMenu.equalsIgnoreCase("E")) {
                         System.out.println("Exiting to main menu");

@@ -1,4 +1,4 @@
-public class Customer implements Patron {
+public class Customer{
     private static int idGenerator = 0;
     private int id;
     private String name;
@@ -9,7 +9,7 @@ public class Customer implements Patron {
     private String ccName;
     private String ccDate;
     private String ccSecurity;
-    private boolean confirmedCustomer;
+//    private boolean confirmedCustomer;
 
     // TODO: delete after development is done. It is used for test data
     public Customer(String name, String email) {
@@ -30,18 +30,18 @@ public class Customer implements Patron {
         this.ccName = ccName;
         this.ccDate = ccDate;
         this.ccSecurity = ccSecurity;
-        this.confirmedCustomer= false;
+//        this.confirmedCustomer= false;
 
     }
 
 
 
-       public boolean update() {
-        // add a scanner to to decided if the customer wants to be added
-           // if YES change the confirmed customer variable to true
-           this.confirmedCustomer = true;
-           return confirmedCustomer;
-       }
+//       public boolean update() {
+//        // add a scanner to to decided if the customer wants to be added
+//           // if YES change the confirmed customer variable to true
+//           this.confirmedCustomer = true;
+//           return confirmedCustomer;
+//       }
 
     /**
      * Other methods
