@@ -17,6 +17,24 @@ public class Main {
         return newDate;
     }
 
+    public static boolean compareCheckIn(ArrayList<Reservation> allReservations,LocalDate checkIn, LocalDate checkOut){
+
+        Boolean dateValidation = true;
+        for (int i = 0; i < allReservations.size(); i++) {
+
+            if (checkIn.isBefore(allReservations.get(i).getStartDate())     &&      (checkOut.isBefore(allReservations.get(i).getStartDate()) || checkOut.isEqual(allReservations.get(i).getStartDate()))
+            ) {
+                // System.out.println("Clear");
+            } else if ((checkIn.isAfter(allReservations.get(i).getEndDate()) || checkIn.isEqual(allReservations.get(i).getEndDate()))     &&      checkOut.isAfter(allReservations.get(i).getEndDate())) {
+                // System.out.println("Clear");
+            } else {
+                // System.out.println(" NOT CLEAR");
+                dateValidation = false;
+            }
+        }
+        return dateValidation;
+    }
+
     public static void displayUpdate (Room r) {
         r.update();
     }
@@ -92,7 +110,6 @@ public class Main {
         Reservation reservation5 = new Reservation(cottage3,customer2,startDate2,endDate2);
         Reservation reservation6 = new Reservation(cottage3,customer3,startDate3,endDate3);
 
-        System.out.println(reservation1.toString());
 
         // adding all the reservations
         allReservations.add(reservation1);
@@ -107,13 +124,14 @@ public class Main {
 
 
 
-        System.out.println("Welcome to California Hotel");
-        System.out.println("___________________________");
+
 
 
         int stopper = 0;
 
         do {
+        System.out.println("Welcome to California Hotel");
+        System.out.println("___________________________");
         System.out.println("\nMain Menu\n");
         System.out.println("C) Create a new reservation");
         System.out.println("V) View Reservation");
@@ -137,8 +155,12 @@ public class Main {
                 /**
                  * Create new reservation
                  */
-                // - - - - - - - - - - - - - - - - OPTION B - - - - - - - - - - - - - - - -
+
+                boolean cMenuStopper = true;
                 Room selectedRoom = null;
+
+
+                // - - - - - - - - - - - - - - - - OPTION B - - - - - - - - - - - - - - - -
                 if (lodgingScan.equalsIgnoreCase("B")){
                     System.out.println("Select a bungalow below\n");
                     // dispay all the options for Bungalows
@@ -148,6 +170,8 @@ public class Main {
                         }
                     }
 
+                    boolean bungalowStopper;
+                    do {
                     // STEP: Pick a room bases on the ID
                     System.out.println("\nSelect a room by the ID above: ");
                     int bungalowId = Integer.parseInt(scan.nextLine().trim());
@@ -155,22 +179,24 @@ public class Main {
                         // create a room accordantly
                         if (bungalowId == 1) { // create a bungalow1
                             selectedRoom = bungalows1;
-
+                            bungalowStopper = true;
                         } else if (bungalowId == 2) { // create a bungalow2
                             selectedRoom = bungalows2;
-
+                            bungalowStopper = true;
                         } else if (bungalowId == 3) { // create a bungalow3
                             selectedRoom = bungalows3;
-
+                            bungalowStopper = true;
                         } else if (bungalowId == 4) { // create a bungalow4
                             selectedRoom = bungalows4;
-
+                            bungalowStopper = true;
                         } else if (bungalowId == 5) { // create a bungalow3
                             selectedRoom = bungalows5;
-
+                            bungalowStopper = true;
                         } else {
                             System.out.println("Not a valid option");
+                            bungalowStopper = false;
                         }
+                    } while (!bungalowStopper);
                 }
 
                 // - - - - - - - - - - - - - - - - OPTION C - - - - - - - - - - - - - - - -
@@ -182,28 +208,31 @@ public class Main {
                         }
                     }
 
+                    boolean cottageStopper;
+                    do {
                     System.out.println("\nSelect a room by the ID above: ");
                     int cottageId = Integer.parseInt(scan.nextLine().trim());
 
                     // create a room accordantly
-                    if (cottageId == 1) { // create a cottage1
+                    if (cottageId == 6) { // create a cottage1
                         selectedRoom = cottage1;
+                        cottageStopper = true;
 
-                    } else if (cottageId == 2) { // create a cottage2
+                    } else if (cottageId == 7) { // create a cottage2
                         selectedRoom = cottage1;
+                        cottageStopper = true;
 
-                    } else if (cottageId == 3) { // create a cottage3
+                    } else if (cottageId == 8) { // create a cottage3
                         selectedRoom = cottage1;
+                        cottageStopper = true;
 
                     } else {
                         System.out.println("Not a valid option");
+                        cottageStopper = false;
                     }
-
-
+                    } while (!cottageStopper);
                 }
-                else {
-                    System.out.println("Not a valid option");
-                }
+
 
                 // - - - - - - - - - - - - - - - - CHECK IN DATE - - - - - - - - - - - - - - - -
 
@@ -213,33 +242,18 @@ public class Main {
                     System.out.println("\nWhen do you want to check in? (YYYY-MM-DD)");
                     String inDate = scan.nextLine();
                     LocalDate checkIn = LocalDate.parse(inDate);
-                    // TODO: check availability
 
                     // Check Out
                     System.out.println("\nHow many nights do you want to stay? ");
                     int stayLength = Integer.parseInt(scan.nextLine().trim());
-                    // TODO: check availability
 
                     LocalDate checkOut = checkIn.plusDays(stayLength);
 
                     System.out.println("\nCheck In: " + checkIn);
                     System.out.println("Check Out: " + checkOut);
 
-                    Boolean dateValidation = true;
-                    for (int i = 0; i < allReservations.size(); i++) {
 
-                        if (checkIn.isBefore(allReservations.get(i).getStartDate())     &&      (checkOut.isBefore(allReservations.get(i).getStartDate()) || checkOut.isEqual(allReservations.get(i).getStartDate()))
-                        ) {
-                            //System.out.println("Clear");
-                        } else if ((checkIn.isAfter(allReservations.get(i).getEndDate()) || checkIn.isEqual(allReservations.get(i).getEndDate()))     &&      checkOut.isAfter(allReservations.get(i).getEndDate())) {
-                            //System.out.println("Clear");
-                        } else {
-//                            System.out.println(" NOT CLEAR");
-                            dateValidation = false;
-                        }
-                    }
-
-                    if ( dateValidation == true) {
+                    if ( compareCheckIn(allReservations,checkIn,checkOut) ) {
 
                 // Adding a customer
                     System.out.println("\nEnter Customer Information");
@@ -288,7 +302,7 @@ public class Main {
 
 
                     // Making reservation
-                    Reservation r = new Reservation( selectedRoom, c, upgradeLen, stayLength);
+                    Reservation r = new Reservation( selectedRoom, c, checkIn,checkOut, upgradeLen, stayLength);
                     allReservations.add(r);
 
                     System.out.println(" -----------------------");
@@ -297,7 +311,8 @@ public class Main {
                     System.out.println("\nYour confirmation number is: "+r.getId());
                     System.out.println("\nYour deposit total is: $"+r.getDeposit());
                     System.out.println("\nYour total is: $"+r.getTotal()+"\n");
-                    } else {
+                    }
+                    else {
                         System.out.println("\nThe room is not available for the dates that you have picked");
                         System.out.println("\n would you like to be added to the waiting list for this room? (Y/N)");
                         String wait = scan.nextLine();
@@ -352,9 +367,13 @@ public class Main {
 
 
                                 // Making reservation
-                                Reservation r = new Reservation( selectedRoom, c, upgradeLen, stayLength);
-                                r.addToWaitlist(r);
+                                Reservation r = new Reservation( selectedRoom, c, checkIn ,checkOut, upgradeLen, stayLength);
+                                selectedRoom.addToWaitlist(r);
+
+                                System.out.println("Print waitlist");
+                                selectedRoom.getWaitlist();
                                 System.out.println("\nYour reservation has been added to the waiting list");
+                                allReservations.add(r);
                                 System.out.println("We will let you know if the room was made available\n");
 
 
@@ -369,52 +388,137 @@ public class Main {
                     }
                 }
 
-
-
             /**
              * - - - - - - - - - - - - - - - - - - - - - - - - - - - OPTION V - - - - - - - - - - - - - - - - - - - - - - - - - - -
              * DONE
              */
             else if (menuOption.equalsIgnoreCase("V")) {
-                // displays all the reservations
-                for (int i = 0; i < allReservations.size() ; i++) {
-                    System.out.println(allReservations.get(i));
-                }
-                System.out.println("\nSelect a reservation ID: ");
-                int vOption = Integer.parseInt(scan.nextLine().trim());
-                // fix look up for the correction of index
-                if (vOption <= allReservations.size()) {
-                    System.out.println(allReservations.get(vOption-1));
-                } else {
-                    System.out.println("\nInvalid option\n");
-                }
-            }
 
+                boolean stop = false;
+                do {
+                    System.out.println("\nSelect a reservation to be viewed ID: ");
+
+                    try {
+                        int vOption = Integer.parseInt(scan.nextLine().trim());
+
+                    for (int i = 0; i < allReservations.size(); i++) {
+                        if (vOption == allReservations.get(i).getId()){
+                            System.out.println(allReservations.get(i));
+                            stop = true;
+                        }
+                    }
+                    if (!stop) {
+                        System.out.println("\nReservation ID not found\n");
+                    }
+                    } catch (NumberFormatException e) {
+                        String errorMsg = "Not a proper ID, try again";
+                        System.out.println(errorMsg);
+                    }
+                } while (!stop);
+            }
 
             /**
              * - - - - - - - - - - - - - - - - - - - - - - - - - - - OPTION E - - - - - - - - - - - - - - - - - - - - - - - - - - -
+             * DONE
              */
             else if (menuOption.equalsIgnoreCase("E")) {
-                System.out.println("E was selected");
-            }
 
+                Reservation editReservation = null;
+
+                boolean stop = false;
+                do {
+                    try {
+                    System.out.println("\nSelect a reservation to be editied ID: ");
+                    int eOption = Integer.parseInt(scan.nextLine().trim());
+
+                    for (int i = 0; i < allReservations.size() ; i++) {
+                        if (eOption == allReservations.get(i).getId()){
+                            editReservation = allReservations.get(i);
+                            System.out.println(editReservation);
+                            stop = true;
+                        }
+                    }
+                    if (!stop){
+                        System.out.println("\nReservation ID not found\n");
+                    }
+                    } catch (NumberFormatException e) {
+                        String errorMsg = "Not a proper ID, try again";
+                        System.out.println(errorMsg);
+                    }
+                } while (!stop);
+
+                System.out.println("\n N) Number of night");
+                System.out.println(" C) Cancel Reservation");
+                System.out.println(" U) Update Amenities");
+                System.out.println(" E) Exit to Main Menu");
+
+                String eSubMenu = scan.nextLine();
+
+                    if (eSubMenu.equalsIgnoreCase( "N")){
+                        System.out.println("How many nights do you want? ");
+                        int updateNights = Integer.parseInt(scan.nextLine().trim());
+
+                        LocalDate newCheckIn = editReservation.getStartDate();
+                        LocalDate newCheckOut = newCheckIn.plusDays(updateNights);
+
+                        System.out.println("\nCheck In: " + newCheckIn);
+                        System.out.println("Check Out: " + newCheckOut);
+
+                        if (compareCheckIn(allReservations,newCheckIn,newCheckOut)) {
+                            System.out.println("Edits were recorded");
+                            editReservation.setEndDate(newCheckOut);
+                            editReservation.setStayLen(updateNights);
+                        } else {
+                            System.out.println("Edits are not able to be recorded. The new dates are not available");
+                        }
+                    }
+                    else if (eSubMenu.equalsIgnoreCase("U")) {
+                        if (editReservation.getRoom() instanceof Bungalows) {
+                            System.out.println("How many nights do you want to add AC? ");
+                        } else if (editReservation.getRoom() instanceof Cottage) {
+                            System.out.println("How many nights do you want to add cable TV? ");
+                        }
+
+                        int updateAmenities = Integer.parseInt(scan.nextLine().trim());
+
+                        if (updateAmenities <= editReservation.getStayLen()) {
+                            editReservation.setUpgradeLen(updateAmenities);
+                            System.out.println("Upgrade recorded\n");
+                        } else {
+                            System.out.println("You cannot days add more then your stay");
+                        }
+                    }
+                    else if (eSubMenu.equalsIgnoreCase("C")) {
+                        editReservation.setAvailable(false);
+                        System.out.println("\nReservation was canceled\n");
+                    }
+                    else if (eSubMenu.equalsIgnoreCase("E")) {
+                        System.out.println("Exiting to main menu");
+
+                    }
+                    else {
+                        System.out.println("\nInvalid option\n");
+
+                    }
+            }
 
             /**
              * - - - - - - - - - - - - - - - - - - - - - - - - - - - OPTION S - - - - - - - - - - - - - - - - - - - - - - - - - - -
+             * DONE
              */
             else if (menuOption.equalsIgnoreCase("S")) {
-                System.out.println("S was selected");
+                System.out.println("Shutting Down Program");
                 stopper = 1 ;
             }
 
             /**
-             * - - - - - - - - - - - - - - - - - - - - - - - - - - - Other Options - - - - - - - - - - - - - - - - - - - - - - - - - - -
+             * - - - - - - - - - - - - - - - - - - - - - - - - - - Other Options - - - - - - - - - - - - - - - - - - - - - - - - - -
+             * DONE
              */
             else {
                 System.out.println("\nNOT a valid option\n");
             }
 
         } while (stopper==0);
-
     }
 }

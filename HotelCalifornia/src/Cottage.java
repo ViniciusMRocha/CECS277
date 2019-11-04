@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Cottage extends Room {
@@ -5,7 +6,6 @@ public class Cottage extends Room {
 
     public Cottage(String name, double rate) {
         super(name, rate);
-        this.ac = false;
     }
 
 
@@ -24,8 +24,6 @@ public class Cottage extends Room {
     @Override
     public String toString() {
 
-        return super.toString() +
-                "     Add on        {AC=" + ac + "}"
-                ;
+        return super.toString();
     }
 }

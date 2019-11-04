@@ -1,11 +1,11 @@
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Bungalows extends Room{
-    private boolean cable;
+    private boolean ac;
 
     public Bungalows(String name, double rate) {
         super(name, rate);
-        this.cable = false;
     }
 
     /**
@@ -22,8 +22,6 @@ public class Bungalows extends Room{
 
     @Override
     public String toString() {
-        return super.toString()+
-                "     Add on        {cable=" + cable + "}"
-                ;
+        return super.toString();
     }
 }

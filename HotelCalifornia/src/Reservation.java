@@ -12,7 +12,9 @@ public class Reservation implements Accomodation{
     private LocalDate startDate;
     private LocalDate endDate;
     private double total;
-    private ArrayList<Reservation> waitlist;
+    private int upgradeLen;
+    private int stayLen;
+    private boolean available;
 
 
     public Reservation(Room room, Customer customer, LocalDate startDate, LocalDate endDate) {
@@ -22,14 +24,20 @@ public class Reservation implements Accomodation{
         this.customer = customer;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.available = true;
     }
 
-    public Reservation(Room room, Customer customer, int upgradeLen, int stayLen) {
+    public Reservation(Room room, Customer customer, LocalDate startDate, LocalDate endDate, int upgradeLen, int stayLen) {
         idGenerator++;
         this.id = idGenerator;
         this.room = room;
         this.customer = customer;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.upgradeLen = upgradeLen;
+        this.stayLen = stayLen;
         this.deposit = makeDeposit(upgradeLen,stayLen);
+        this.available = true;
     }
 
     /**
@@ -105,9 +113,40 @@ public class Reservation implements Accomodation{
         return endDate;
     }
 
-    public void addToWaitlist (Reservation r) {
-        ArrayList wl = this.waitlist;
-        wl.add(r);
+    public Room getRoom() {
+        return room;
+    }
+
+    public int getUpgradeLen() {
+        return upgradeLen;
+    }
+
+    public int getStayLen() {
+        return stayLen;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    // setters
+
+    public void setUpgradeLen(int upgradeLen) {
+        this.upgradeLen = upgradeLen;
+        this.deposit = makeDeposit(upgradeLen,this.stayLen);
+    }
+
+    public void setStayLen(int stayLen) {
+        this.stayLen = stayLen;
+        this.deposit = makeDeposit(this.upgradeLen,stayLen);
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     @Override
@@ -118,6 +157,9 @@ public class Reservation implements Accomodation{
                 "     General Info  {" +
                 "deposit=" + deposit +
                 ", startDate='" + startDate + '\'' +
-                ", endDate='" + endDate + '\'' + "}\n";
+                ", endDate='" + endDate + '\'' +
+                ", stayLength='" + stayLen + '\'' +
+                ", upgradeLength='" + upgradeLen + '\'' +
+                "}\n";
     }
 }
