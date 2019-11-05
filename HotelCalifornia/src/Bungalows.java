@@ -12,10 +12,6 @@ public class Bungalows extends Room{
      * Class methods
      */
 
-    public void notification(){
-
-    }
-
     public int getUpgradeRate () {
         return 20;
     }

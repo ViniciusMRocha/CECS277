@@ -7,6 +7,6 @@ public interface Accomodation {
     void removeReserve(Reservation reservation);
 
     // look for the next patron and make it a room
-    void notification();
+    void notification(Reservation reservation);
 
 }

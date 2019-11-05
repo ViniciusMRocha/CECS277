@@ -30,18 +30,7 @@ public class Customer{
         this.ccName = ccName;
         this.ccDate = ccDate;
         this.ccSecurity = ccSecurity;
-//        this.confirmedCustomer= false;
-
     }
-
-
-
-//       public boolean update() {
-//        // add a scanner to to decided if the customer wants to be added
-//           // if YES change the confirmed customer variable to true
-//           this.confirmedCustomer = true;
-//           return confirmedCustomer;
-//       }
 
     /**
      * Other methods

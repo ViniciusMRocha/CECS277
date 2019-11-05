@@ -20,7 +20,7 @@ public class Main {
 
     public static boolean compareCheckIn(ArrayList<Reservation> allReservations,LocalDate checkIn, LocalDate checkOut){
 
-        Boolean dateValidation = true;
+        boolean dateValidation = true;
         for (int i = 0; i < allReservations.size(); i++) {
 
             if (checkIn.isBefore(allReservations.get(i).getStartDate())     &&      (checkOut.isBefore(allReservations.get(i).getStartDate()) || checkOut.isEqual(allReservations.get(i).getStartDate()))
@@ -120,9 +120,8 @@ public class Main {
         allReservations.add(reservation5);
         allReservations.add(reservation6);
 
-
-
-
+        Customer customer4 = new Customer("Jane Doe","1234 Beach Blvd. Long Beach, CA", "(562) 555-1234","jdoe@gmail.com","1234 5678 9012","Jane M. Done","08/20","851");
+        Customer customer5 = new Customer("Pam Zo","9801 Aspen Ave. Norwalk, CA", "(562) 555-1234","pamzo@gmail.com","2468 1012 1416","Pamela Zo","04/22","123");
 
 
 
@@ -157,9 +156,7 @@ public class Main {
                  * Create new reservation
                  */
 
-                boolean cMenuStopper = true;
                 Room selectedRoom = null;
-
 
                 // - - - - - - - - - - - - - - - - OPTION B - - - - - - - - - - - - - - - -
                 if (lodgingScan.equalsIgnoreCase("B")){
@@ -315,7 +312,7 @@ public class Main {
                     }
                     else {
                         System.out.println("\nThe room is not available for the dates that you have picked");
-                        System.out.println("\n would you like to be added to the waiting list for this room? (Y/N)");
+                        System.out.println("\nWould you like to be added to the waiting list for this room? (Y/N)");
                         String wait = scan.nextLine();
 
                         int waitStoper = 0;
@@ -495,14 +492,14 @@ public class Main {
                     }
                     // - - - - - - - - - - - - - - - - OPTION C - - - - - - - - - - - - - - - -
                     else if (eSubMenu.equalsIgnoreCase("C")) {
+
+                        System.out.println("\nReservation was canceled\n");
                         // make the reservation not in effect
                         editReservation.notInEffect();
 
                         // Observer Patter
                         editReservation.getRoom().notification(editReservation);
 
-                        System.out.println("Here is the current waitlist");
-                        editReservation.getRoom().getWaitlist();
                     }
                     else if (eSubMenu.equalsIgnoreCase("E")) {
                         System.out.println("Exiting to main menu");

@@ -29,28 +29,27 @@ public abstract class Room implements Accomodation{
     }
 
     public void removeReserve(Reservation reservation) {
-        reservation.inEffect();
+        reservation.notInEffect();
     }
 
     public void notification(Reservation reservation) {
-
-        System.out.println("\nReservation was canceled\n");
+        removeReserve(reservation);
+        System.out.println("Reach notification\n");
+        System.out.println(reservation);
 
         for (int i = 0; i < this.waitlist.size(); i++) {
-            System.out.println(this.waitlist.get(i));
+            Reservation checkReservation = this.waitlist.get(i);
+            if (compareCheckIn(this.waitlist,checkReservation.getStartDate(),checkReservation.getEndDate())){
+                System.out.println("The following reservation is going in effect now");
+                System.out.println(checkReservation);
+                checkReservation.inEffect();
+            }
+            else {
+                System.out.println("There are no reservations on the waitlist available to be replace at the moment");
+            }
+
         }
-        System.out.println("Done printing the waitlist, will try to reserve");
 
-        boolean passed = compareCheckIn(this.waitlist,reservation.getStartDate(),reservation.getEndDate());
-
-
-        if (passed) {
-            System.out.println("It passed");
-        } else {
-            System.out.println("not passed");
-        }
-
-        System.out.println("New reservation was made upon the recent cancellation");
     }
 
     /**
@@ -58,24 +57,29 @@ public abstract class Room implements Accomodation{
      */
 
 
-
     public boolean compareCheckIn(ArrayList<Reservation> allReservations, LocalDate checkIn, LocalDate checkOut){
 
-        Boolean dateValidation = true;
+        boolean dateValidation = true;
         for (int i = 0; i < allReservations.size(); i++) {
 
-            if (!allReservations.get(i).getInEffect()) {
-                if (checkIn.isBefore(allReservations.get(i).getStartDate())     &&      (checkOut.isBefore(allReservations.get(i).getStartDate()) || checkOut.isEqual(allReservations.get(i).getStartDate()))
-                ) {
-                    // System.out.println("Clear");
-                } else if ((checkIn.isAfter(allReservations.get(i).getEndDate()) || checkIn.isEqual(allReservations.get(i).getEndDate()))     &&      checkOut.isAfter(allReservations.get(i).getEndDate())) {
-                    // System.out.println("Clear");
-                } else {
-                    // System.out.println(" NOT CLEAR");
+            if (allReservations.get(i).isInEffect()) {
+
+                if ( (checkOut.isBefore(allReservations.get(i).getStartDate()) || checkOut.isEqual(allReservations.get(i).getStartDate())) && (checkIn.isBefore(allReservations.get(i).getStartDate())) ) {
+//                    System.out.println("Check");
+                }
+
+                else if ( (checkIn.isAfter(allReservations.get(i).getEndDate()) || checkIn.isEqual(allReservations.get(i).getEndDate())) && (checkOut.isAfter(allReservations.get(i).getEndDate())) ) {
+//                    System.out.println("Check");
+                }
+
+                else {
+//                     System.out.println(" NOT CLEAR");
                     dateValidation = false;
                 }
+
+                }
             }
-        }
+
         return dateValidation;
     }
 
