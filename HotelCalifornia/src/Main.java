@@ -1,40 +1,9 @@
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.text.SimpleDateFormat;
 
 
 public class Main {
-
-    public static Date stringToDate (String date) {
-        String strYear = date.substring(0,4);
-        int intYear = Integer.parseInt(strYear);
-        String strMonth = date.substring(5,7);
-        int intMonth = Integer.parseInt(strMonth);
-        String strDay = date.substring(8,10);
-        int intDay = Integer.parseInt(strDay);
-        Date newDate = new Date(intYear,intMonth-1,intDay);
-        return newDate;
-    }
-
-    public static boolean compareCheckIn(ArrayList<Reservation> allReservations,LocalDate checkIn, LocalDate checkOut){
-
-        boolean dateValidation = true;
-        for (int i = 0; i < allReservations.size(); i++) {
-
-            if (checkIn.isBefore(allReservations.get(i).getStartDate())     &&      (checkOut.isBefore(allReservations.get(i).getStartDate()) || checkOut.isEqual(allReservations.get(i).getStartDate()))
-            ) {
-                // System.out.println("Clear");
-            } else if ((checkIn.isAfter(allReservations.get(i).getEndDate()) || checkIn.isEqual(allReservations.get(i).getEndDate()))     &&      checkOut.isAfter(allReservations.get(i).getEndDate())) {
-                // System.out.println("Clear");
-            } else {
-                // System.out.println(" NOT CLEAR");
-                dateValidation = false;
-            }
-        }
-        return dateValidation;
-    }
 
     public static void displayUpdate (Room r) {
         r.update();
@@ -52,7 +21,6 @@ public class Main {
         /**
          * Set Up
          */
-
 
         // Variables
         ArrayList<Room> allRoomOptions = new ArrayList<Room>();
@@ -84,47 +52,99 @@ public class Main {
         allRoomOptions.add(cottage2);
         allRoomOptions.add(cottage3);
 
-        // Customer Test
-        Customer customer1 = new Customer("Jimmy Sparks","jimmy.sparks@three.com");
-        Customer customer2 = new Customer("Gloria Sparks","Gloria.sparks@three.com");
-        Customer customer3 = new Customer("Dona Sparks","Dona.sparks@three.com");
+        // Customer
+        Customer customer1 = new Customer("Jane Doe","1234 Beach Blvd. Long Beach, CA", "(562) 555-1234","jdoe@gmail.com","1234 5678 9012","Jane M. Done","08/20","851");
+        Customer customer2 = new Customer("Pam Zo","9801 Aspen Ave. Norwalk, CA", "(562) 555-1234","pamzo@gmail.com","2468 1012 1416","Pamela Zo","04/22","123");
+
 
         // adding all the customers
         allCustomers.add(customer1);
         allCustomers.add(customer2);
-        allCustomers.add(customer3);
+
+
+        LocalDate startDate1 = covertDate("2019-11-08");
+        LocalDate endDate1 = covertDate("2019-11-13");
+
+        LocalDate startDate2 = covertDate("2019-11-13");
+        LocalDate endDate2 = covertDate("2019-11-16");
 
         // Reservation
-
-
-        LocalDate startDate1 = covertDate("2019-10-05");
-        LocalDate startDate2 = covertDate("2019-10-12");
-        LocalDate startDate3 = covertDate("2019-10-17");
-        LocalDate endDate1 = covertDate("2019-10-09");
-        LocalDate endDate2 = covertDate("2019-10-15");
-        LocalDate endDate3 = covertDate("2019-10-21");
-
-        Reservation reservation1 = new Reservation(bungalows1,customer1,startDate1,endDate1);
-        Reservation reservation2 = new Reservation(bungalows2,customer2,startDate2,endDate2);
-        Reservation reservation3 = new Reservation(bungalows3,customer3,startDate3,endDate3);
-        Reservation reservation4 = new Reservation(cottage1,customer1,startDate1,endDate1);
-        Reservation reservation5 = new Reservation(cottage3,customer2,startDate2,endDate2);
-        Reservation reservation6 = new Reservation(cottage3,customer3,startDate3,endDate3);
-
+        Reservation reservation1 = new Reservation(bungalows1,customer1,startDate1,endDate1,0,5);
+        Reservation reservation2 = new Reservation(bungalows2,customer2,startDate2,endDate2,0,3);
 
         // adding all the reservations
         allReservations.add(reservation1);
+        reservation1.getRoom().setCurrentReservation(reservation1);
         allReservations.add(reservation2);
-        allReservations.add(reservation3);
-        allReservations.add(reservation4);
-        allReservations.add(reservation5);
-        allReservations.add(reservation6);
-
-        Customer customer4 = new Customer("Jane Doe","1234 Beach Blvd. Long Beach, CA", "(562) 555-1234","jdoe@gmail.com","1234 5678 9012","Jane M. Done","08/20","851");
-        Customer customer5 = new Customer("Pam Zo","9801 Aspen Ave. Norwalk, CA", "(562) 555-1234","pamzo@gmail.com","2468 1012 1416","Pamela Zo","04/22","123");
+        reservation2.getRoom().setCurrentReservation(reservation2);
 
 
 
+        // Reservation 3
+            // Bungalow
+                // 1
+                // 2019-11-10
+                // 3
+            // Customer
+                // Tim Johnson
+                // 4657 Colorado St. Santa Ana, CA
+                // (562) 555-1789
+                // tj89@gmail.com
+                // Ana Johnson
+                // 1357 9111 3151
+                // 12/19
+                // 545
+
+        // Reservation 4
+            // Coottage
+                // 6
+                // 2019-11-10
+                // 3
+        // Customer
+            // Tim Johnson
+            // 4657 Colorado St. Santa Ana, CA
+            // (562) 555-1789
+            // tj89@gmail.com
+            // 1357 9111 3151
+            // Ana Johnson
+            // 12/19
+            // 545
+        // Add On
+            // Yes
+            // 2
+
+        // Reservation 5
+            // Bungalow
+                // 1
+                // 2019-11-09
+                // 3
+        // Customer
+            // Antonio Vargas
+            // 7654 Colonia Ave. Mission Hills, CA
+            // (714) 555-1965
+            // varan@gmail.com
+            // 2021 2223 2425
+            // Antonio Vargas
+            // 12/19
+            // 545
+
+        // Reservation 6
+            // Bungalow
+                // 6
+                // 2019-11-10
+                // 3
+        // Customer
+            // Tim Johnson
+            // 4657 Colorado St. Santa Ana, CA
+            // (562) 555-1789
+            // tj89@gmail.com
+            // 1357 9111 3151
+            // Ana Johnson
+            // 12/19
+            // 545
+        // Add On
+            // Yes
+            // 1
 
 
         int stopper = 0;
@@ -145,8 +165,7 @@ public class Main {
              * - - - - - - - - - - - - - - - - - - - - - - - - - - - OPTION C - - - - - - - - - - - - - - - - - - - - - - - - - - -
              */
             if (menuOption.equalsIgnoreCase("C")) {
-                System.out.println("C was selected\n");
-                System.out.println("What type of lodging do you want to reserve? \n");
+                System.out.println("\nWhat type of lodging do you want to reserve? \n");
                 System.out.println("B) Bungalow");
                 System.out.println("C) Cottage");
                 System.out.println("\nOption: ");
@@ -234,8 +253,6 @@ public class Main {
 
                 // - - - - - - - - - - - - - - - - CHECK IN DATE - - - - - - - - - - - - - - - -
 
-                    // STEP: Enter the check in date
-
                     // Check In
                     System.out.println("\nWhen do you want to check in? (YYYY-MM-DD)");
                     String inDate = scan.nextLine();
@@ -250,8 +267,14 @@ public class Main {
                     System.out.println("\nCheck In: " + checkIn);
                     System.out.println("Check Out: " + checkOut);
 
+                    ArrayList <Reservation> availabilityCheck = new ArrayList<>();
+                    for (int i = 0; i < allReservations.size(); i++) {
+                        if (allReservations.get(i).getRoom().getId() == selectedRoom.getId()) {
+                            availabilityCheck.add(allReservations.get(i));
+                        }
+                    }
 
-                    if ( compareCheckIn(allReservations,checkIn,checkOut) ) {
+                    if ( selectedRoom.compareCheckIn(availabilityCheck,checkIn,checkOut) ) {
 
                 // Adding a customer
                     System.out.println("\nEnter Customer Information");
@@ -298,10 +321,10 @@ public class Main {
                     } while (loopStopper == 0);
 
 
-
                     // Making reservation
                     Reservation r = new Reservation( selectedRoom, c, checkIn,checkOut, upgradeLen, stayLength);
                     allReservations.add(r);
+                    r.getRoom().setCurrentReservation(r);
 
                     System.out.println(" -----------------------");
                     System.out.println("| Reservation Completed |");
@@ -366,11 +389,10 @@ public class Main {
 
                                 // Making reservation
                                 Reservation r = new Reservation( selectedRoom, c, checkIn ,checkOut, upgradeLen, stayLength);
-                                r.notInEffect();
                                 // Observer pattern
                                 selectedRoom.addReserve(r);
-                                System.out.println("Print waitlist");
-                                selectedRoom.getWaitlist();
+                                System.out.println(" ");
+                                selectedRoom.printWaitlist();
                                 System.out.println("\nYour reservation has been added to the waiting list");
                                 allReservations.add(r);
                                 System.out.println("We will let you know if the room was made available\n");
@@ -465,7 +487,7 @@ public class Main {
                         System.out.println("\nCheck In: " + newCheckIn);
                         System.out.println("Check Out: " + newCheckOut);
 
-                        if (compareCheckIn(allReservations,newCheckIn,newCheckOut)) {
+                        if (editReservation.getRoom().compareCheckIn(editReservation.getRoom().getWaitlist(),newCheckIn,newCheckOut)) {
                             System.out.println("Edits were recorded");
                             editReservation.setEndDate(newCheckOut);
                             editReservation.setStayLen(updateNights);
@@ -494,11 +516,13 @@ public class Main {
                     else if (eSubMenu.equalsIgnoreCase("C")) {
 
                         System.out.println("\nReservation was canceled\n");
-                        // make the reservation not in effect
-                        editReservation.notInEffect();
+
+
+                        allReservations.remove(editReservation);
 
                         // Observer Patter
                         editReservation.getRoom().notification(editReservation);
+                        editReservation.updateReservation();
 
                     }
                     else if (eSubMenu.equalsIgnoreCase("E")) {

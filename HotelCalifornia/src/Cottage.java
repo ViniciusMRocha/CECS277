@@ -1,26 +1,35 @@
-import java.util.ArrayList;
-import java.util.Date;
-
 public class Cottage extends Room {
-    private boolean ac;
 
+    /**
+     * Creates a room of type cottage
+     * @param name String
+     * @param rate double
+     */
     public Cottage(String name, double rate) {
         super(name, rate);
     }
 
+    // Class Methods
 
     /**
-     * Class methods
+     * returns the upgraded rate for when a upgrade is requested
+     * @return integer
      */
-
-    public void update () {
-        System.out.println("Cable TV upgrade is $5/night");
-    }
-
     public int getUpgradeRate () {
         return 5;
     }
 
+    /**
+     * Prints out the upgrade message for a Cottage
+     */
+    public void update () {
+        System.out.println("Cable TV upgrade is $5/night");
+    }
+
+    /**
+     * Print out a cottage attributes
+     * @return
+     */
     @Override
     public String toString() {
 

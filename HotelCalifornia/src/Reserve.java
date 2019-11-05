@@ -1,5 +1,9 @@
 public interface Reserve {
 
-    boolean update();
+    /**
+     * Updates the reservation when it was moves to a current status
+     * @return
+     */
+    void updateReservation();
 
 }

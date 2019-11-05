@@ -9,16 +9,18 @@ public class Customer{
     private String ccName;
     private String ccDate;
     private String ccSecurity;
-//    private boolean confirmedCustomer;
 
-    // TODO: delete after development is done. It is used for test data
-    public Customer(String name, String email) {
-        idGenerator++;
-        this.id = idGenerator;
-        this.name = name;
-        this.email = email;
-    }
-
+    /**
+     * Creates a customer with basic personal information and credit card information
+     * @param name String
+     * @param address String
+     * @param phone String
+     * @param email String
+     * @param ccNumber String
+     * @param ccName String
+     * @param ccDate String
+     * @param ccSecurity String
+     */
     public Customer(String name, String address, String phone, String email, String ccNumber, String ccName, String ccDate, String ccSecurity) {
         idGenerator++;
         this.id = idGenerator;
@@ -32,12 +34,13 @@ public class Customer{
         this.ccSecurity = ccSecurity;
     }
 
+  // Class Methods
+
+
     /**
-     * Other methods
-     *
+     * Prints the customer attributes
+     * @return String
      */
-
-
     @Override
     public String toString() {
         return "Customer      {" +

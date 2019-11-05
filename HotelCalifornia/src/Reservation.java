@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class Reservation implements Reserve{
     private static int idGenerator = 0;
@@ -12,19 +11,17 @@ public class Reservation implements Reserve{
     private double total;
     private int upgradeLen;
     private int stayLen;
-    private boolean inEffect;
+    private boolean reservedFromWaitlist;
 
-
-    public Reservation(Room room, Customer customer, LocalDate startDate, LocalDate endDate) {
-        idGenerator++;
-        this.id = idGenerator;
-        this.room = room;
-        this.customer = customer;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.inEffect = true;
-    }
-
+    /**
+     * Creates a reservation for a specific customer for a specific room
+     * @param room Room
+     * @param customer Customer
+     * @param startDate LocalDate
+     * @param endDate LocalDate
+     * @param upgradeLen integer
+     * @param stayLen integer
+     */
     public Reservation(Room room, Customer customer, LocalDate startDate, LocalDate endDate, int upgradeLen, int stayLen) {
         idGenerator++;
         this.id = idGenerator;
@@ -35,29 +32,25 @@ public class Reservation implements Reserve{
         this.upgradeLen = upgradeLen;
         this.stayLen = stayLen;
         this.deposit = makeDeposit(upgradeLen,stayLen);
-        this.inEffect = true;
+
     }
 
+    // interface Method
     /**
-     * Interface Methods
+     * Updates the room
+     * @return boolean
      */
-
-    public boolean update() {
-        return true;
+    public void updateReservation() {
+        this.reservedFromWaitlist = true;
     }
 
-
+    //Local methods
     /**
-     * Local methods
+     * Calculates how much the deposit will be for the reservation given the room used
+     * @param upgradeLen integer
+     * @param stayLen integer
+     * @return double
      */
-
-    public LocalDate covertDate (String d) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate date = LocalDate.parse(d,formatter);
-        return date;
-    }
-
-
     public double makeDeposit (int upgradeLen, int stayLen) {
         double result = 0;
         double upgradeTotal = room.getUpgradeRate()*upgradeLen;
@@ -72,78 +65,102 @@ public class Reservation implements Reserve{
         return result;
     }
 
+    /**
+     * returns the depoist amount
+     * @return double
+     */
     public double getDeposit() {
         return deposit;
     }
 
+    /**
+     * returns the total amount
+     * @return double
+     */
     public double getTotal() {
         return total;
     }
 
+    /**
+     * returns the reservation ID
+     * @return integer
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     * returns the check in day
+     * @return LocalDate
+     */
     public LocalDate getStartDate() {
         return startDate;
     }
 
+    /**
+     * returns the check out day
+     * @return LocalDate
+     */
     public LocalDate getEndDate() {
         return endDate;
     }
 
+    /**
+     * returns the room in the reservation
+     * @return Room
+     */
     public Room getRoom() {
         return room;
     }
 
-    public int getUpgradeLen() {
-        return upgradeLen;
-    }
-
+    /**
+     * returns length of the stay
+     * @return integer
+     */
     public int getStayLen() {
         return stayLen;
     }
 
-    public boolean isInEffect() {
-        return inEffect;
-    }
 
     // setters
 
+    /**
+     * set the length of the upgrade in days
+     * @param upgradeLen integer
+     */
     public void setUpgradeLen(int upgradeLen) {
         this.upgradeLen = upgradeLen;
         this.deposit = makeDeposit(upgradeLen,this.stayLen);
     }
 
+    /**
+     * set the length of stay for the reservation
+     * @param stayLen integer
+     */
     public void setStayLen(int stayLen) {
         this.stayLen = stayLen;
         this.deposit = makeDeposit(this.upgradeLen,stayLen);
     }
 
-    public void notInEffect() {
-        this.inEffect = false;
-    }
-
-    public void inEffect() {
-        this.inEffect = true;
-    }
-
-    public boolean getInEffect() {
-        return inEffect;
-    }
-
+    /**
+     * set the checkout day for the reservation
+     * @param endDate LocalDate
+     */
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
+    /**
+     * Prints the reservation, room and customer attributes
+     * @return String
+     */
     @Override
     public String toString() {
         return "Reservation " + id + "\n" +
                 room + "\n" +
                 "     " + customer + "\n" +
                 "     General Info  {" +
-                "in effect=" + inEffect +
-                ", deposit=" + deposit +
+                "deposit=" + deposit +
                 ", startDate='" + startDate + '\'' +
                 ", endDate='" + endDate + '\'' +
                 ", stayLength='" + stayLen + '\'' +
