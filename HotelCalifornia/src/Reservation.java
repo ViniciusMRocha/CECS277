@@ -32,6 +32,7 @@ public class Reservation implements Reserve{
         this.upgradeLen = upgradeLen;
         this.stayLen = stayLen;
         this.deposit = makeDeposit(upgradeLen,stayLen);
+        this.reservedFromWaitlist = false;
 
     }
 
@@ -40,9 +41,23 @@ public class Reservation implements Reserve{
      * Updates the room
      * @return boolean
      */
-    public void updateReservation() {
+
+    public void updateReservation(Reservation reservation) {
+        if (reservation.isReservedFromWaitlist()) {
+            reservation.makeReservationFalse();
+        } else {
+            reservation.makeReservationTrue();
+        }
+    }
+
+    public void makeReservationTrue() {
         this.reservedFromWaitlist = true;
     }
+
+    public void makeReservationFalse() {
+        this.reservedFromWaitlist = false;
+    }
+
 
     //Local methods
     /**
@@ -121,8 +136,11 @@ public class Reservation implements Reserve{
         return stayLen;
     }
 
+    public boolean isReservedFromWaitlist() {
+        return reservedFromWaitlist;
+    }
 
-    // setters
+// setters
 
     /**
      * set the length of the upgrade in days
@@ -165,6 +183,7 @@ public class Reservation implements Reserve{
                 ", endDate='" + endDate + '\'' +
                 ", stayLength='" + stayLen + '\'' +
                 ", upgradeLength='" + upgradeLen + '\'' +
+                ", waitlisted='" + reservedFromWaitlist + '\'' +
                 "}\n";
     }
 }

@@ -55,6 +55,8 @@ public class Main {
         // Customer
         Customer customer1 = new Customer("Jane Doe","1234 Beach Blvd. Long Beach, CA", "(562) 555-1234","jdoe@gmail.com","1234 5678 9012","Jane M. Done","08/20","851");
         Customer customer2 = new Customer("Pam Zo","9801 Aspen Ave. Norwalk, CA", "(562) 555-1234","pamzo@gmail.com","2468 1012 1416","Pamela Zo","04/22","123");
+        Customer customer3 = new Customer("Tim Johnson","4657 Colorado St. Santa Ana, CA", "(562) 555-1234","tj89@gmail.com","1357 9111 3151","Ana Johnson","12/19","545");
+        Customer customer4 = new Customer("Antonio Vargas","7654 Colonia Ave. Mission Hills, CA", "(714) 555-1965","varan@gmail.com","2021 2223 2425","Pamela Zo","04/22","123");
 
 
         // adding all the customers
@@ -68,9 +70,12 @@ public class Main {
         LocalDate startDate2 = covertDate("2019-11-13");
         LocalDate endDate2 = covertDate("2019-11-16");
 
+        LocalDate startDate3 = covertDate("2019-11-10");
+        LocalDate endDate3 = covertDate("2019-11-13");
+
         // Reservation
         Reservation reservation1 = new Reservation(bungalows1,customer1,startDate1,endDate1,0,5);
-        Reservation reservation2 = new Reservation(bungalows2,customer2,startDate2,endDate2,0,3);
+        Reservation reservation2 = new Reservation(bungalows1,customer2,startDate2,endDate2,0,3);
 
         // adding all the reservations
         allReservations.add(reservation1);
@@ -78,74 +83,20 @@ public class Main {
         allReservations.add(reservation2);
         reservation2.getRoom().setCurrentReservation(reservation2);
 
+        Reservation reservation3 = new Reservation(bungalows1,customer3,startDate3,endDate3,0,3);
+        Reservation reservation4 = new Reservation(cottage1,customer3,startDate3,endDate3,2,3);
+        Reservation reservation5 = new Reservation(bungalows1,customer4,startDate3,endDate3,0,3);
+        Reservation reservation6 = new Reservation(bungalows5,customer3,startDate3,endDate3,1,3);
 
+        bungalows1.addReserve(reservation3);
+        cottage1.addReserve(reservation4);
+        bungalows1.addReserve(reservation5);
+        bungalows5.addReserve(reservation6);
 
-        // Reservation 3
-            // Bungalow
-                // 1
-                // 2019-11-10
-                // 3
-            // Customer
-                // Tim Johnson
-                // 4657 Colorado St. Santa Ana, CA
-                // (562) 555-1789
-                // tj89@gmail.com
-                // Ana Johnson
-                // 1357 9111 3151
-                // 12/19
-                // 545
-
-        // Reservation 4
-            // Coottage
-                // 6
-                // 2019-11-10
-                // 3
-        // Customer
-            // Tim Johnson
-            // 4657 Colorado St. Santa Ana, CA
-            // (562) 555-1789
-            // tj89@gmail.com
-            // 1357 9111 3151
-            // Ana Johnson
-            // 12/19
-            // 545
-        // Add On
-            // Yes
-            // 2
-
-        // Reservation 5
-            // Bungalow
-                // 1
-                // 2019-11-09
-                // 3
-        // Customer
-            // Antonio Vargas
-            // 7654 Colonia Ave. Mission Hills, CA
-            // (714) 555-1965
-            // varan@gmail.com
-            // 2021 2223 2425
-            // Antonio Vargas
-            // 12/19
-            // 545
-
-        // Reservation 6
-            // Bungalow
-                // 6
-                // 2019-11-10
-                // 3
-        // Customer
-            // Tim Johnson
-            // 4657 Colorado St. Santa Ana, CA
-            // (562) 555-1789
-            // tj89@gmail.com
-            // 1357 9111 3151
-            // Ana Johnson
-            // 12/19
-            // 545
-        // Add On
-            // Yes
-            // 1
-
+        allReservations.add(reservation3);
+        allReservations.add(reservation4);
+        allReservations.add(reservation5);
+        allReservations.add(reservation6);
 
         int stopper = 0;
 
@@ -389,6 +340,7 @@ public class Main {
 
                                 // Making reservation
                                 Reservation r = new Reservation( selectedRoom, c, checkIn ,checkOut, upgradeLen, stayLength);
+                                r.updateReservation(r);
                                 // Observer pattern
                                 selectedRoom.addReserve(r);
                                 System.out.println(" ");
@@ -521,8 +473,8 @@ public class Main {
                         allReservations.remove(editReservation);
 
                         // Observer Patter
-                        editReservation.getRoom().notification(editReservation);
-                        editReservation.updateReservation();
+                        editReservation.getRoom().notification(editReservation,allReservations);
+                        editReservation.updateReservation(editReservation);
 
                     }
                     else if (eSubMenu.equalsIgnoreCase("E")) {

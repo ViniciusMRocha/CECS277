@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public interface Accommodation {
 
     /**
@@ -16,6 +18,6 @@ public interface Accommodation {
      * Abstract method for when a reservation is canceled the room gets notify and goes over the waitlist to try to add a new reservation to the room
      * @param reservation
      */
-    void notification(Reservation reservation);
+    void notification(Reservation reservation, ArrayList<Reservation> allReservations);
 
 }

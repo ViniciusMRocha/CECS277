@@ -45,15 +45,18 @@ public abstract class Room implements Accommodation {
      * When a reservation is canceled the room gets notify and goes over the waitlist to try to add a new reservation to the room
      * @param reservation Reservation
      */
-    public void notification(Reservation reservation) {
+    public void notification(Reservation reservation, ArrayList<Reservation> allReservation) {
+        System.out.println("Current Waitlist");
+        System.out.println(this.waitlist);
         removeReserve(reservation);
-        System.out.println("Canceling:");
+        System.out.println("\nCanceling:");
         System.out.println(reservation);
 
         for (int i = 0; i < this.waitlist.size(); i++) {
             Reservation checkReservation = this.waitlist.get(i);
-            if (compareWailist(this.waitlist,checkReservation.getStartDate(),checkReservation.getEndDate())){
+            if (compareWailist(checkReservation.getStartDate(), checkReservation.getEndDate())) {
                 System.out.println("The following reservation is going in effect now");
+                checkReservation.updateReservation(checkReservation);
                 System.out.println(checkReservation);
                 this.currentReservation = checkReservation;
                 break;
@@ -88,16 +91,15 @@ public abstract class Room implements Accommodation {
 
     /**
      * Takes the waiting list array list to compare is the new reservation check in and out days are valid for a new reservation to happen
-     * @param allReservations ArrayList
      * @param checkIn LocalDate
      * @param checkOut LocalDate
      * @return boolean
      */
-    public boolean compareWailist(ArrayList<Reservation> allReservations, LocalDate checkIn, LocalDate checkOut){
+    public boolean compareWailist(LocalDate checkIn, LocalDate checkOut){
 
         boolean dateValidation = true;
-        for (int i = 0; i < allReservations.size(); i++) {
-            Reservation checker = allReservations.get(i);
+        for (int i = 0; i < this.waitlist.size(); i++) {
+            Reservation checker = this.waitlist.get(i);
             if ( (checkOut.isBefore(checker.getStartDate()) || checkOut.isEqual(checker.getStartDate())) && (checkIn.isBefore(checker.getStartDate())) ) {
             } else if ( (checkIn.isAfter(checker.getEndDate()) || checkIn.isEqual(checker.getEndDate())) && (checkOut.isAfter(checker.getEndDate())) ) {
             } else if ( (checkIn.isEqual(checker.getStartDate()) || checkIn.isAfter(checker.getStartDate())) && (checkOut.isEqual(checker.getEndDate()) || checkOut.isBefore(checker.getEndDate())) ) {
